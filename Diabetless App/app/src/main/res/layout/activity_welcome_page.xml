@@ -19,8 +19,10 @@
 
     <TextView
         android:id="@+id/text1"
-        android:layout_width="284dp"
-        android:layout_height="92dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center"
         android:text="@string/welcome"
@@ -34,41 +36,46 @@
 
     <TextView
         android:id="@+id/desc"
-        android:layout_width="361dp"
-        android:layout_height="43dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center_horizontal"
         android:text="@string/desc"
+        android:textAlignment="center"
         android:textColor="@android:color/darker_gray"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text1" />
 
-    <com.CH2PS073.diabetless.ui.customView.CustomLoginButton
+    <Button
         android:id="@+id/loginButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:text="@string/login"
+        app:backgroundTint="@color/navy"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/desc"
         tools:alpha="100" />
 
-    <com.CH2PS073.diabetless.ui.customView.CustomSignupButton
+    <Button
         android:id="@+id/signupButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:enabled="false"
         android:text="@string/signup"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/pink_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
