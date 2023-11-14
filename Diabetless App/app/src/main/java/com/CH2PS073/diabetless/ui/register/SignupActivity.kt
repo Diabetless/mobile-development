@@ -9,6 +9,7 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.CH2PS073.diabetless.R
@@ -50,9 +51,9 @@ class SignupActivity : AppCompatActivity() {
             }
         })
 
-        binding.signupButton.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
-        }
+//        binding.signupButton.setOnClickListener {
+//            startActivity(Intent(this, LoginActivity::class.java))
+//        }
 
         binding.loginTextButton.setOnClickListener{
             startActivity(Intent(this, LoginActivity::class.java))
@@ -71,7 +72,15 @@ class SignupActivity : AppCompatActivity() {
                     val apiService = ApiConfig.getApiService()
                     val successResponse = apiService.register(name, email, username, password)
                     val toastSuccess = successResponse.message
-                    showToast(toastSuccess)
+                    AlertDialog.Builder(this@SignupActivity).apply {
+                        setTitle("Email dan password")
+                        setMessage("email anda :\"$email\" \npassword anda : \"$password\"\n$toastSuccess")
+                        setPositiveButton("Lanjut") { _, _ ->
+                            startActivity(Intent(this@SignupActivity, LoginActivity::class.java))
+                        }
+                        create()
+                        show()
+                    }
                     showLoading(false)
                 } catch (e: HttpException) {
                     val errorBody = e.response()?.errorBody()?.string()

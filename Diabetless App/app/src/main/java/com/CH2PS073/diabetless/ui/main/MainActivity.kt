@@ -1,46 +1,58 @@
 package com.CH2PS073.diabetless.ui.main
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.CH2PS073.diabetless.R
 import com.CH2PS073.diabetless.databinding.ActivityMainBinding
 import com.CH2PS073.diabetless.ui.ViewModelFactory
 import com.CH2PS073.diabetless.ui.welcome.WelcomePage
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<MainViewModel> {
         ViewModelFactory.getInstance(this)
     }
+
     private lateinit var binding: ActivityMainBinding
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         viewModel.getSession().observe(this) { user ->
-            if (!user.isLogin) {
-                startActivity(Intent(this, WelcomePage::class.java))
-                finish()
-            } else {
-                val token = user.token
-                binding.textView.text = "ini token dari local storage $token"
-                showToast(token)
+                if (!user.isLogin) {
+                    startActivity(Intent(this, WelcomePage::class.java))
+                    finish()
+                } else {
+
+                    val navView: BottomNavigationView = binding.navView
+
+                    val navController = findNavController(R.id.nav_host_fragment_activity_main)
+                    // Passing each menu ID as a set of Ids because each
+                    // menu should be considered as top level destinations.
+                    val appBarConfiguration = AppBarConfiguration(
+                        setOf(
+                            R.id.navigation_home, R.id.navigation_glycemic, R.id.navigation_meal_planner, R.id.navigation_health
+                        )
+                    )
+                    setupActionBarWithNavController(navController, appBarConfiguration)
+                    navView.setupWithNavController(navController)
+                }
             }
-        }
 
         setupView()
 
-        binding.logoutButton.setOnClickListener {
-            viewModel.logout()
-        }
     }
 
     private fun setupView() {
@@ -53,13 +65,5 @@ class MainActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
         }
-    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    companion object {
-        const val TOKEN_LOGIN : String = "user token"
     }
 }
