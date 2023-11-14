@@ -1,7 +1,5 @@
 package com.CH2PS073.diabetless.ui.login
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -49,7 +47,6 @@ class LoginActivity : AppCompatActivity() {
 
         setupView()
         setupAction()
-        playAnimation()
 
         myEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
@@ -98,6 +95,8 @@ class LoginActivity : AppCompatActivity() {
                 try {
                     val apiService = ApiConfig.getApiService()
                     val successResponse = apiService.login(email, password)
+                    val toastSuccess = successResponse.message
+                    showToast(toastSuccess)
                     val token = successResponse.token
                     TOKEN = token
 
@@ -108,7 +107,6 @@ class LoginActivity : AppCompatActivity() {
                             setMessage("Anda berhasil login.")
                             setPositiveButton("Lanjut") { _, _ ->
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                intent.putExtra(MainActivity.TOKEN_LOGIN, TOKEN)
                                 intent.flags =
                                     Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                                 startActivity(intent)
@@ -123,7 +121,14 @@ class LoginActivity : AppCompatActivity() {
                 } catch (e: HttpException) {
                     val errorBody = e.response()?.errorBody()?.string()
                     val errorResponse = Gson().fromJson(errorBody, RegisterResponse::class.java)
-                    showToast(errorResponse.message)
+                    AlertDialog.Builder(this@LoginActivity).apply {
+                        setTitle("Email atau password anda salah")
+                        setMessage("email anda :\"$email\" \npassword anda : \"$password\"\n$errorResponse")
+                        setPositiveButton("coba lagi") { _, _ ->
+                        }
+                        create()
+                        show()
+                    }
                     showLoading(false)
                 }
             }
@@ -136,19 +141,5 @@ class LoginActivity : AppCompatActivity() {
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-    }
-
-
-    private fun playAnimation() {
-        val login = ObjectAnimator.ofFloat(binding.loginButton, View.ALPHA, 1f).setDuration(100)
-        val email = ObjectAnimator.ofFloat(binding.emailTextView, View.ALPHA, 1f).setDuration(100)
-        val emailLyt = ObjectAnimator.ofFloat(binding.emailEditTextLayout, View.ALPHA, 1f).setDuration(100)
-        val pswrd = ObjectAnimator.ofFloat(binding.passwordTextView, View.ALPHA, 1f).setDuration(100)
-        val pswrdLyt = ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(100)
-
-        AnimatorSet().apply {
-            playSequentially(email, emailLyt, pswrd, pswrdLyt, login )
-            start()
-        }
     }
 }
