@@ -92,5 +92,6 @@
     <string name="save_change">Save Changes</string>
     <string name="old_password">Old Password</string>
     <string name="new_password">New Password</string>
+    <string name="fullnameUlin">ulinnuha</string>
 
 </resources>

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.CH2PS073.diabetless.ui.main.ui.home.HomeFragment"
+        android:name="com.ch2Ps073.diabetless.ui.main.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -24,21 +24,21 @@
 
     <fragment
         android:id="@+id/navigation_glycemic"
-        android:name="com.CH2PS073.diabetless.ui.main.ui.glycemic.GlycemicIndexFragment"
+        android:name="com.ch2Ps073.diabetless.ui.main.ui.glycemic.GlycemicIndexFragment"
         android:label="@string/title_glycemic"
         tools:layout="@layout/fragment_glycemic_index" >
     </fragment>
 
     <fragment
         android:id="@+id/navigation_meal_planner"
-        android:name="com.CH2PS073.diabetless.ui.main.ui.mealPlanner.MealPlanFragment"
+        android:name="com.ch2Ps073.diabetless.ui.main.ui.mealPlanner.MealPlanFragment"
         android:label="@string/title_meal_plan"
         tools:layout="@layout/fragment_meal_planner_index" >
     </fragment>
 
     <fragment
         android:id="@+id/navigation_health"
-        android:name="com.CH2PS073.diabetless.ui.main.ui.health.HealthFragment"
+        android:name="com.ch2Ps073.diabetless.ui.main.ui.health.HealthFragment"
         android:label="@string/title_health"
         tools:layout="@layout/fragment_meal_planner_index" >
     </fragment>
