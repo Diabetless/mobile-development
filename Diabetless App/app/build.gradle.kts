@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.CH2PS073.diabetless"
+    namespace = "com.ch2Ps073.diabetless"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.CH2PS073.diabetless"
+        applicationId = "com.ch2Ps073.diabetless"
         minSdk = 21
         targetSdk = 33
         versionCode = 1
