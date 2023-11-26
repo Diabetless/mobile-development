@@ -1,4 +1,4 @@
-package com.ch2Ps073.diabetless.data.local.user.pref
+package com.CH2PS073.diabetless.data.local.user.pref
 
 import android.content.Context
 import androidx.datastore.core.DataStore
