@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.CH2PS073.diabetless"
+    namespace = "com.ch2Ps073.diabetless"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.CH2PS073.diabetless"
+        applicationId = "com.ch2Ps073.diabetless"
         minSdk = 21
         targetSdk = 33
         versionCode = 1
@@ -47,6 +47,9 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
+    implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

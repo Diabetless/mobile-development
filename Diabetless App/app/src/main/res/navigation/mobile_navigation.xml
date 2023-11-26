@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.ch2Ps073.diabetless.ui.main.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_meal_planner"
+            app:destination="@id/navigation_meal_planner" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_glycemic"
+            app:destination="@id/navigation_glycemic" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_health"
+            app:destination="@id/navigation_health"
+            app:launchSingleTop="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_glycemic"
+        android:name="com.ch2Ps073.diabetless.ui.main.ui.glycemic.GlycemicIndexFragment"
+        android:label="@string/title_glycemic"
+        tools:layout="@layout/fragment_glycemic_index" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_meal_planner"
+        android:name="com.ch2Ps073.diabetless.ui.main.ui.mealPlanner.MealPlanFragment"
+        android:label="@string/title_meal_plan"
+        tools:layout="@layout/fragment_meal_planner_index" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_health"
+        android:name="com.ch2Ps073.diabetless.ui.main.ui.health.HealthFragment"
+        android:label="@string/title_health"
+        tools:layout="@layout/fragment_meal_planner_index" >
+    </fragment>
+</navigation>
