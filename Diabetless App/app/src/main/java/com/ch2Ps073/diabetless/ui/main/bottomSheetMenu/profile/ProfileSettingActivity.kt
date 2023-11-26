@@ -1,15 +1,23 @@
 package com.ch2Ps073.diabetless.ui.main.bottomSheetMenu.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.ch2Ps073.diabetless.R
 import com.ch2Ps073.diabetless.data.remote.response.DetailUser
+import com.ch2Ps073.diabetless.data.remote.response.RegisterResponse
 import com.ch2Ps073.diabetless.databinding.ActivityProfileSettingBinding
 import com.ch2Ps073.diabetless.ui.ViewModelFactory
 import com.ch2Ps073.diabetless.ui.main.MainViewModel
+import com.ch2Ps073.diabetless.ui.main.ui.home.HomeFragment
+import com.google.gson.Gson
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 class ProfileSettingActivity : AppCompatActivity() {
     private val mainViewModel by viewModels<MainViewModel> {
@@ -56,6 +64,25 @@ class ProfileSettingActivity : AppCompatActivity() {
     }
 
     private fun setDetailUser(detail: DetailUser) {
+
+        lifecycleScope.launch {
+            try {
+                AlertDialog.Builder(this@ProfileSettingActivity).apply {
+                    setTitle("Email dan username")
+                    setMessage("email anda :\"${detail.email}\" \nusername anda : \"${detail.username}\"\n")
+                    setPositiveButton("Lanjut") { _, _ ->
+                        startActivity(Intent(this@ProfileSettingActivity, HomeFragment::class.java))
+                    }
+                    create()
+                    show()
+                }
+            } catch (e: HttpException) {
+                val errorBody = e.response()?.errorBody()?.string()
+                val errorResponse = Gson().fromJson(errorBody, RegisterResponse::class.java)
+                showToast(errorResponse.message)
+            }
+        }
+
         binding.nameEditText.setText(detail.fullName)
         binding.emailEditText.setText(detail.email)
         binding.usernameEditText.setText(detail.username)
