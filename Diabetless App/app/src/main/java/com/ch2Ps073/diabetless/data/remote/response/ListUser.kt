@@ -10,5 +10,5 @@ data class ListUser(
     val status: String,
 
     @field:SerializedName("user")
-    val user: DetailUser? = null
+    val user: DetailUser
 )
