@@ -1,6 +1,8 @@
 package com.ch2Ps073.diabetless.data.remote.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class GetUserResponse(
 
@@ -14,6 +16,7 @@ data class GetUserResponse(
     val user: List<DetailUser>
 )
 
+@Parcelize
 data class DetailUser(
 
     @field:SerializedName("fullName")
@@ -28,4 +31,4 @@ data class DetailUser(
     @field:SerializedName("profilePicture")
     val profilePicture: String? = null
 
-)
+) : Parcelable
