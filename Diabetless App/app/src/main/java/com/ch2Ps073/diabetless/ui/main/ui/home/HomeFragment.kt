@@ -11,9 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.ch2Ps073.diabetless.R
 import com.ch2Ps073.diabetless.databinding.FragmentHomeBinding
 import com.ch2Ps073.diabetless.ui.main.bottomSheetMenu.BottomSheetMenuFragment
-import com.ch2Ps073.diabetless.ui.main.ui.glycemic.GlycemicIndexFragment
-import com.ch2Ps073.diabetless.ui.main.ui.health.HealthFragment
-import com.ch2Ps073.diabetless.ui.main.ui.mealPlanner.MealPlanFragment
 
 
 class HomeFragment : Fragment() {
@@ -51,26 +48,26 @@ class HomeFragment : Fragment() {
             showToast("Fitur article belum tersedia")
         }
 
-        binding.healthButton.setOnClickListener {
-            val transaction = activity?.supportFragmentManager?.beginTransaction()
-            transaction?.replace(R.id.nav_host_fragment_activity_main, HealthFragment())
-            transaction?.disallowAddToBackStack()
-            transaction?.commit()
-        }
-
-        binding.glycemicButton.setOnClickListener {
-            val transaction = activity?.supportFragmentManager?.beginTransaction()
-            transaction?.replace(R.id.nav_host_fragment_activity_main, GlycemicIndexFragment())
-            transaction?.disallowAddToBackStack()
-            transaction?.commit()
-        }
-
-        binding.mealPlanButton.setOnClickListener {
-            val transaction = activity?.supportFragmentManager?.beginTransaction()
-            transaction?.replace(R.id.nav_host_fragment_activity_main, MealPlanFragment())
-            transaction?.disallowAddToBackStack()
-            transaction?.commit()
-        }
+//        binding.healthButton.setOnClickListener {
+//            val transaction = activity?.supportFragmentManager?.beginTransaction()
+//            transaction?.replace(R.id.nav_host_fragment_activity_main, HealthFragment())
+//            transaction?.disallowAddToBackStack()
+//            transaction?.commit()
+//        }
+//
+//        binding.glycemicButton.setOnClickListener {
+//            val transaction = activity?.supportFragmentManager?.beginTransaction()
+//            transaction?.replace(R.id.nav_host_fragment_activity_main, GlycemicIndexFragment())
+//            transaction?.disallowAddToBackStack()
+//            transaction?.commit()
+//        }
+//
+//        binding.mealPlanButton.setOnClickListener {
+//            val transaction = activity?.supportFragmentManager?.beginTransaction()
+//            transaction?.replace(R.id.nav_host_fragment_activity_main, MealPlanFragment())
+//            transaction?.disallowAddToBackStack()
+//            transaction?.commit()
+//        }
 
         return root
 

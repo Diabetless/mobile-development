@@ -115,7 +115,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usernameEditTextLayout">
 
-        <com.CH2PS073.diabetless.ui.customView.PasswordEditText
+        <com.ch2Ps073.diabetless.ui.customView.PasswordEditText
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -139,7 +139,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout">
 
-        <com.CH2PS073.diabetless.ui.customView.PasswordEditText
+        <com.ch2Ps073.diabetless.ui.customView.PasswordEditText
             android:id="@+id/confirmPasswordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -163,7 +163,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmPasswordEditTextLayout" />
 
-    <com.CH2PS073.diabetless.ui.customView.CustomSignupButton
+    <com.ch2Ps073.diabetless.ui.customView.CustomSignupButton
         android:id="@+id/signupButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

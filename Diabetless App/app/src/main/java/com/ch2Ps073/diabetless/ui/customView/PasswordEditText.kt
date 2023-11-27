@@ -1,4 +1,4 @@
-package com.CH2PS073.diabetless.ui.customView
+package com.ch2Ps073.diabetless.ui.customView
 
 import android.content.Context
 import android.text.Editable

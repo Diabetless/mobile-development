@@ -1,12 +1,12 @@
-package com.CH2PS073.diabetless.ui.splashscreen
+package com.ch2Ps073.diabetless.ui.splashscreen
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.widget.ImageView
-import com.CH2PS073.diabetless.R
-import com.CH2PS073.diabetless.ui.welcome.WelcomePage
+import com.ch2Ps073.diabetless.R
+import com.ch2Ps073.diabetless.ui.welcome.WelcomePage
 
 class SplashScreen : AppCompatActivity() {
 

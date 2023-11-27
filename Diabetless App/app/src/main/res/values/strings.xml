@@ -25,5 +25,29 @@
     <string name="agree_policy"><![CDATA[I agree to the Terms & Condition and Privacy Policy]]></string>
     <string name="welcome">Welcome to Diabetless</string>
     <string name="desc">Empower Your Health with Diabetless: Your Ultimate Diabetless Management Companion</string>
+    <string name="profile">Profile</string>
+    <string name="fullname">Fullname</string>
+    <string name="change_password">Change Password</string>
+    <string name="save_change">Save Change</string>
+    <string name="notification_setting_button">Notification Settings</string>
+    <string name="help_center_button">Help Center</string>
+    <string name="about_us_button">About Us</string>
+    <string name="logout_button">Logout</string>
+    <string name="title_home">Home</string>
+    <string name="title_camera">Camera</string>
+    <string name="title_meal">Meal Plan</string>
+    <string name="title_health">Health</string>
+    <string name="title_glycemic">Glycemic</string>
+    <string name="title_meal_plan">Meal Planner</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="see_more">See more</string>
+    <string name="reminder">Reminder</string>
+    <string name="enter">Enter</string>
+    <string name="glycemic_index_camera">Glycemic Index Camera</string>
+    <string name="title_meal_planner">Meal Planner</string>
+    <string name="plan">Plan</string>
+    <string name="menu">Menu</string>
+    <string name="fullnameUlin">Ulinnuha</string>
 
 </resources>

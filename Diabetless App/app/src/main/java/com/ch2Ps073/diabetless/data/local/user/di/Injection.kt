@@ -1,11 +1,10 @@
-package com.CH2PS073.diabetless.data.local.user.di
+package com.ch2Ps073.diabetless.data.local.user.di
 
 import android.content.Context
-import com.CH2PS073.diabetless.data.local.user.pref.UserPreference
-import com.CH2PS073.diabetless.data.local.user.pref.UserRepository
-import com.CH2PS073.diabetless.data.local.user.pref.dataStore
-import com.CH2PS073.diabetless.data.remote.ApiConfig
-import com.CH2PS073.diabetless.data.remote.ApiService
+import com.ch2Ps073.diabetless.data.local.user.pref.UserPreference
+import com.ch2Ps073.diabetless.data.local.user.pref.UserRepository
+import com.ch2Ps073.diabetless.data.local.user.pref.dataStore
+import com.ch2Ps073.diabetless.data.remote.ApiConfig
 
 object Injection {
     fun provideRepository(context: Context): UserRepository {

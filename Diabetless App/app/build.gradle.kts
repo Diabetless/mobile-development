@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.CH2PS073.diabetless"
+    namespace = "com.ch2Ps073.diabetless"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.CH2PS073.diabetless"
+        applicationId = "com.ch2Ps073.diabetless"
         minSdk = 21
         targetSdk = 33
         versionCode = 1
@@ -64,4 +64,7 @@ dependencies {
     implementation("androidx.exifinterface:exifinterface:1.3.6")
 
     implementation ("com.github.bumptech.glide:glide:4.11.0")
+
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.7.2")
+    implementation ("androidx.navigation:navigation-ui-ktx:2.7.2")
 }

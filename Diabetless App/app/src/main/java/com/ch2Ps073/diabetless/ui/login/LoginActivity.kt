@@ -1,4 +1,4 @@
-package com.CH2PS073.diabetless.ui.login
+package com.ch2Ps073.diabetless.ui.login
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -15,16 +15,16 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.CH2PS073.diabetless.R
-import com.CH2PS073.diabetless.data.local.user.pref.UserModel
-import com.CH2PS073.diabetless.data.remote.ApiConfig
-import com.CH2PS073.diabetless.data.remote.response.RegisterResponse
-import com.CH2PS073.diabetless.databinding.ActivityLoginBinding
-import com.CH2PS073.diabetless.ui.ViewModelFactory
-import com.CH2PS073.diabetless.ui.customView.CustomLoginButton
-import com.CH2PS073.diabetless.ui.customView.PasswordEditText
-import com.CH2PS073.diabetless.ui.main.MainActivity
-import com.CH2PS073.diabetless.ui.register.SignupActivity
+import com.ch2Ps073.diabetless.R
+import com.ch2Ps073.diabetless.data.local.user.pref.UserModel
+import com.ch2Ps073.diabetless.data.remote.ApiConfig
+import com.ch2Ps073.diabetless.data.remote.response.RegisterResponse
+import com.ch2Ps073.diabetless.databinding.ActivityLoginBinding
+import com.ch2Ps073.diabetless.ui.ViewModelFactory
+import com.ch2Ps073.diabetless.ui.customView.CustomLoginButton
+import com.ch2Ps073.diabetless.ui.customView.PasswordEditText
+import com.ch2Ps073.diabetless.ui.main.MainActivity
+import com.ch2Ps073.diabetless.ui.register.SignupActivity
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import retrofit2.HttpException

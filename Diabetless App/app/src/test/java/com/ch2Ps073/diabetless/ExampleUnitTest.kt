@@ -1,4 +1,4 @@
-package com.CH2PS073.diabetless
+package com.ch2Ps073.diabetless
 
 import org.junit.Test
 

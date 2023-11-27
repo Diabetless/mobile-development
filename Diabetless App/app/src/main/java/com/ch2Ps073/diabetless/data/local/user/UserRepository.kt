@@ -1,9 +1,9 @@
-package com.CH2PS073.diabetless.data.local.user.pref
+package com.ch2Ps073.diabetless.data.local.user.pref
 
 import androidx.lifecycle.liveData
-import com.CH2PS073.diabetless.data.remote.ApiService
+import com.ch2Ps073.diabetless.data.remote.ApiService
 import kotlinx.coroutines.flow.Flow
-import com.CH2PS073.diabetless.utils.Result
+import com.ch2Ps073.diabetless.utils.Result
 
 class UserRepository private constructor(
     private val userPreference: UserPreference,

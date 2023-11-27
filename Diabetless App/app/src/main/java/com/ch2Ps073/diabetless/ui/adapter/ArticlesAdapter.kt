@@ -1,11 +1,11 @@
-package com.CH2PS073.diabetless.ui.adapter
+package com.ch2Ps073.diabetless.ui.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.CH2PS073.diabetless.data.remote.response.ArticleItem
-import com.CH2PS073.diabetless.databinding.ItemArticlesRowBinding
+import com.ch2Ps073.diabetless.data.remote.response.ArticleItem
+import com.ch2Ps073.diabetless.databinding.ItemArticlesRowBinding
 import com.bumptech.glide.Glide
 
 class ArticlesAdapter : RecyclerView.Adapter<ArticlesAdapter.ViewHolder>() {

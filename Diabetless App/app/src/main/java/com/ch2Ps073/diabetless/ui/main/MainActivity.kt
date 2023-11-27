@@ -1,4 +1,4 @@
-package com.CH2PS073.diabetless.ui.main
+package com.ch2Ps073.diabetless.ui.main
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -13,13 +13,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.CH2PS073.diabetless.data.remote.response.ArticleItem
-import com.CH2PS073.diabetless.databinding.ActivityMainBinding
-import com.CH2PS073.diabetless.ui.ViewModelFactory
-import com.CH2PS073.diabetless.ui.adapter.ArticlesAdapter
-import com.CH2PS073.diabetless.ui.detail.DetailActivity
-import com.CH2PS073.diabetless.ui.login.LoginActivity
-import com.CH2PS073.diabetless.ui.splashscreen.SplashScreen
+import com.ch2Ps073.diabetless.data.remote.response.ArticleItem
+import com.ch2Ps073.diabetless.databinding.ActivityMainBinding
+import com.ch2Ps073.diabetless.ui.ViewModelFactory
+import com.ch2Ps073.diabetless.ui.adapter.ArticlesAdapter
+import com.ch2Ps073.diabetless.ui.detail.DetailActivity
+import com.ch2Ps073.diabetless.ui.login.LoginActivity
+import com.ch2Ps073.diabetless.ui.splashscreen.SplashScreen
 
 class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<MainViewModel> {
@@ -42,16 +42,16 @@ class MainActivity : AppCompatActivity() {
                 finish()
             } else {
                 val token = user.token
-                binding.textView.text = "ini token dari local storage $token"
+//                binding.textView.text = "ini token dari local storage $token"
                 showToast(token)
             }
         }
 
         setupView()
 
-        binding.logoutButton.setOnClickListener {
-            viewModel.logout()
-        }
+//        binding.logoutButton.setOnClickListener {
+//            viewModel.logout()
+//        }
 
         setupToolbar()
         setRecyclerView()

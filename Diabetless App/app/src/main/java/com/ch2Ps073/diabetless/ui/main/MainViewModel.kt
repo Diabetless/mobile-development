@@ -1,4 +1,4 @@
-package com.CH2PS073.diabetless.ui.main
+package com.ch2Ps073.diabetless.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,11 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.CH2PS073.diabetless.data.local.user.pref.UserModel
-import com.CH2PS073.diabetless.data.local.user.pref.UserRepository
-import com.CH2PS073.diabetless.data.remote.response.ArticleItem
-import com.CH2PS073.diabetless.utils.Event
-import com.CH2PS073.diabetless.utils.Result
+import com.ch2Ps073.diabetless.data.local.user.pref.UserModel
+import com.ch2Ps073.diabetless.data.local.user.pref.UserRepository
+import com.ch2Ps073.diabetless.data.remote.response.ArticleItem
+import com.ch2Ps073.diabetless.utils.Event
+import com.ch2Ps073.diabetless.utils.Result
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val repository: UserRepository) : ViewModel() {
