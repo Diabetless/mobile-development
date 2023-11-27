@@ -37,7 +37,7 @@ class ProfileSettingViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
-                        _users.value = responseBody.user
+                        _users.value = responseBody.user ?: DetailUser()
                     }
                 } else {
                     Log.e(TAG, "onFailure: findDetail fail 2")

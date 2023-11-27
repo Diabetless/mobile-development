@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.ui.mealPlanner.mealCart.MealCartActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/layout_sv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/ic_back"
+            app:title="Meals" />
+
+    </androidx.cardview.widget.CardView>
+
+    <ScrollView
+        android:id="@+id/layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/layout_sv">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_meals_cart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_meals_cart_row" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:text="Summary"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:id="@+id/dummy_gi"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:padding="6dp"
+                        android:text="Avg. Glycemix Index"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toStartOf="@id/tv_cal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_gi"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:gravity="end"
+                        android:padding="6dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/dummy_gi"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/dummy_gi"
+                        tools:text="135.0" />
+
+                    <TextView
+                        android:id="@+id/dummy_gl"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:padding="6dp"
+                        android:text="Avg. Glycemix Load"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toStartOf="@id/tv_gi"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_gi" />
+
+                    <TextView
+                        android:id="@+id/tv_gl"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:gravity="end"
+                        android:padding="6dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/dummy_gl"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/dummy_gl"
+                        tools:text="4.37" />
+
+                    <TextView
+                        android:id="@+id/dummy_cal"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:padding="6dp"
+                        android:text="Total Calories (kcal)"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toStartOf="@id/tv_gl"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_gl" />
+
+                    <TextView
+                        android:id="@+id/tv_cal"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:gravity="end"
+                        android:padding="6dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/dummy_cal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/dummy_cal"
+                        tools:text="135.0" />
+
+                    <TextView
+                        android:id="@+id/dummy_carb"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:padding="6dp"
+                        android:text="Total Carbohydrates (g)"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toStartOf="@id/tv_cal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/dummy_cal" />
+
+                    <TextView
+                        android:id="@+id/tv_carb"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:gravity="end"
+                        android:padding="6dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/dummy_carb"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/dummy_carb"
+                        tools:text="135.0" />
+
+                    <TextView
+                        android:id="@+id/dummy_proteins"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:padding="6dp"
+                        android:text="Total Proteins (g)"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toStartOf="@id/tv_cal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/dummy_carb" />
+
+                    <TextView
+                        android:id="@+id/tv_proteins"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:gravity="end"
+                        android:padding="6dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/dummy_proteins"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/dummy_proteins"
+                        tools:text="18.5" />
+
+                    <TextView
+                        android:id="@+id/dummy_fats"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:padding="6dp"
+                        android:text="Total Fats (g)"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toStartOf="@id/tv_cal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/dummy_proteins" />
+
+                    <TextView
+                        android:id="@+id/tv_fats"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:gravity="end"
+                        android:padding="6dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/dummy_fats"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/dummy_fats"
+                        tools:text="3.5" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tv_empty_meals"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Meals is Empty!"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_sv"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

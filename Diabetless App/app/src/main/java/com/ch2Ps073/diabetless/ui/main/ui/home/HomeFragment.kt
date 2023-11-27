@@ -1,5 +1,6 @@
 package com.ch2Ps073.diabetless.ui.main.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.ch2Ps073.diabetless.R
 import com.ch2Ps073.diabetless.databinding.FragmentHomeBinding
+import com.ch2Ps073.diabetless.ui.articles.ArticlesActivity
 import com.ch2Ps073.diabetless.ui.main.bottomSheetMenu.BottomSheetMenuFragment
 import com.ch2Ps073.diabetless.ui.main.ui.glycemic.GlycemicIndexFragment
 import com.ch2Ps073.diabetless.ui.main.ui.health.HealthFragment
@@ -43,12 +45,14 @@ class HomeFragment : Fragment() {
                     BottomSheetMenuFragment().show(childFragmentManager, "bottomSheetMenu")
                     true
                 }
+
                 else -> false
             }
         }
 
         binding.articleMore.setOnClickListener {
-            showToast("Fitur article belum tersedia")
+            val iArticle = Intent(requireContext(), ArticlesActivity::class.java)
+            startActivity(iArticle)
         }
 
         binding.healthButton.setOnClickListener {

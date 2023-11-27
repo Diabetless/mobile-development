@@ -1,4 +1,4 @@
-package com.CH2PS073.diabetless.data.remote.response
+package com.ch2Ps073.diabetless.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 

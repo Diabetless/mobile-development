@@ -1,4 +1,4 @@
-package com.CH2PS073.diabetless.ui.welcome
+package com.ch2Ps073.diabetless.ui.welcome
 
 import android.content.Intent
 import android.os.Build
@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import com.CH2PS073.diabetless.databinding.ActivityWelcomePageBinding
-import com.CH2PS073.diabetless.ui.login.LoginActivity
-import com.CH2PS073.diabetless.ui.register.SignupActivity
+import com.ch2Ps073.diabetless.databinding.ActivityWelcomePageBinding
+import com.ch2Ps073.diabetless.ui.login.LoginActivity
+import com.ch2Ps073.diabetless.ui.register.SignupActivity
 
 class WelcomePage : AppCompatActivity() {
 

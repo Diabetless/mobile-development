@@ -1,19 +1,16 @@
-package com.CH2PS073.diabetless.ui.detail
+package com.ch2Ps073.diabetless.ui.detail
 
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
-import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
-import com.CH2PS073.diabetless.R
-import com.CH2PS073.diabetless.data.local.user.di.Injection
-import com.CH2PS073.diabetless.data.local.user.pref.UserRepository
-import com.CH2PS073.diabetless.databinding.ActivityDetailBinding
-import com.CH2PS073.diabetless.ui.main.MainActivity.Companion.KEY_ID
 import com.bumptech.glide.Glide
+import com.ch2Ps073.diabetless.data.local.user.di.Injection
+import com.ch2Ps073.diabetless.databinding.ActivityDetailBinding
+import com.ch2Ps073.diabetless.ui.articles.ArticlesActivity.Companion.KEY_ID
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding

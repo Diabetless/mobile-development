@@ -15,8 +15,38 @@
         android:theme="@style/Theme.Diabetless"
         tools:targetApi="31">
         <activity
+            android:name=".ui.main.ui.mealPlanner.mealCart.MealCartActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.Diabetless.NoActionBar" />
+        <activity
+            android:name=".ui.main.ui.mealPlanner.favorites.FavoritesActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.Diabetless.NoActionBar" />
+        <activity
+            android:name=".ui.main.ui.mealPlanner.mealDetail.MealDetailActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.Diabetless.NoActionBar" />
+        <activity
             android:name=".ui.detail.DetailActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.Diabetless.NoActionBar" />
+        <activity
+            android:name=".ui.articles.ArticlesActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.Diabetless.NoActionBar" />
+        <activity
+            android:name=".ui.main.bottomSheetMenu.profile.ProfileSettingActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="true"
+            android:label="@string/title_activity_main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.splashscreen.SplashScreen"
             android:exported="false" />
@@ -29,15 +59,6 @@
         <activity
             android:name=".ui.register.SignupActivity"
             android:exported="false" />
-        <activity
-            android:name=".ui.main.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
         <meta-data
             android:name="preloaded_fonts"

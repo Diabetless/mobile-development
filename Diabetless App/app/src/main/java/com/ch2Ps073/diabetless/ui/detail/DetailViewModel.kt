@@ -1,16 +1,15 @@
-package com.CH2PS073.diabetless.ui.detail
+package com.ch2Ps073.diabetless.ui.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
-import com.CH2PS073.diabetless.data.local.user.pref.UserRepository
-import com.CH2PS073.diabetless.data.remote.response.Article
-import com.CH2PS073.diabetless.data.remote.response.DetailArticleResponse
-import com.CH2PS073.diabetless.utils.Event
-import com.CH2PS073.diabetless.utils.Result
+import com.ch2Ps073.diabetless.data.remote.response.Article
+import com.ch2Ps073.diabetless.data.local.user.pref.UserRepository
+import com.ch2Ps073.diabetless.utils.Event
 import kotlinx.coroutines.launch
+import com.ch2Ps073.diabetless.utils.Result
 
 class DetailViewModel(
     private val id: String,

@@ -1,4 +1,4 @@
-package com.CH2PS073.diabetless.ui.register
+package com.ch2Ps073.diabetless.ui.register
 
 import android.content.Intent
 import android.os.Build
@@ -9,15 +9,16 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.CH2PS073.diabetless.R
-import com.CH2PS073.diabetless.data.remote.ApiConfig
-import com.CH2PS073.diabetless.data.remote.response.RegisterResponse
-import com.CH2PS073.diabetless.databinding.ActivitySignupBinding
-import com.CH2PS073.diabetless.ui.customView.CustomSignupButton
-import com.CH2PS073.diabetless.ui.customView.PasswordEditText
-import com.CH2PS073.diabetless.ui.login.LoginActivity
+import com.ch2Ps073.diabetless.R
+import com.ch2Ps073.diabetless.data.remote.ApiConfig
+import com.ch2Ps073.diabetless.data.remote.response.RegisterResponse
+import com.ch2Ps073.diabetless.databinding.ActivitySignupBinding
+import com.ch2Ps073.diabetless.ui.customView.CustomSignupButton
+import com.ch2Ps073.diabetless.ui.customView.PasswordEditText
+import com.ch2Ps073.diabetless.ui.login.LoginActivity
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -50,9 +51,9 @@ class SignupActivity : AppCompatActivity() {
             }
         })
 
-        binding.signupButton.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
-        }
+//        binding.signupButton.setOnClickListener {
+//            startActivity(Intent(this, LoginActivity::class.java))
+//        }
 
         binding.loginTextButton.setOnClickListener{
             startActivity(Intent(this, LoginActivity::class.java))
@@ -71,7 +72,15 @@ class SignupActivity : AppCompatActivity() {
                     val apiService = ApiConfig.getApiService()
                     val successResponse = apiService.register(name, email, username, password)
                     val toastSuccess = successResponse.message
-                    showToast(toastSuccess)
+                    AlertDialog.Builder(this@SignupActivity).apply {
+                        setTitle("Email dan password")
+                        setMessage("email anda :\"$email\" \npassword anda : \"$password\"\n$toastSuccess")
+                        setPositiveButton("Lanjut") { _, _ ->
+                            startActivity(Intent(this@SignupActivity, LoginActivity::class.java))
+                        }
+                        create()
+                        show()
+                    }
                     showLoading(false)
                 } catch (e: HttpException) {
                     val errorBody = e.response()?.errorBody()?.string()
