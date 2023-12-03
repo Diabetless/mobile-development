@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.ch2Ps073.diabetless.R
 import com.ch2Ps073.diabetless.databinding.FragmentHomeBinding
 import com.ch2Ps073.diabetless.ui.articles.ArticlesActivity
+import com.ch2Ps073.diabetless.ui.main.MainActivity
 import com.ch2Ps073.diabetless.ui.main.bottomSheetMenu.BottomSheetMenuFragment
 import com.ch2Ps073.diabetless.ui.main.ui.glycemic.GlycemicIndexFragment
 import com.ch2Ps073.diabetless.ui.main.ui.health.HealthFragment
@@ -67,6 +69,8 @@ class HomeFragment : Fragment() {
             transaction?.replace(R.id.nav_host_fragment_activity_main, GlycemicIndexFragment())
             transaction?.disallowAddToBackStack()
             transaction?.commit()
+            val activity =  requireActivity() as MainActivity;
+            activity.binding.navView.isVisible = false
         }
 
         binding.mealPlanButton.setOnClickListener {

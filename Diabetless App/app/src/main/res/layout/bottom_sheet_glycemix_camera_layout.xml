@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_rounded_top"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/tv_detected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rice"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/dummy_gi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Glycemix Index"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.ch2Ps073.diabetless.ui.customView.PieView
+                android:id="@+id/pie_gi"
+                android:layout_width="150dp"
+                android:layout_height="150sp"
+                android:layout_margin="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dummy_gi" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@id/pie_gi"
+                app:layout_constraintEnd_toEndOf="@id/pie_gi"
+                app:layout_constraintStart_toStartOf="@id/pie_gi"
+                app:layout_constraintTop_toTopOf="@id/pie_gi">
+
+                <TextView
+                    android:id="@+id/tv_gi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="90.0"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_gi_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(High)"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/dummy_gl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Glycemix Load"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.ch2Ps073.diabetless.ui.customView.PieView
+                android:id="@+id/pie_gl"
+                android:layout_width="150dp"
+                android:layout_height="150sp"
+                android:layout_margin="25dp"
+                android:padding="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dummy_gl" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@id/pie_gl"
+                app:layout_constraintEnd_toEndOf="@id/pie_gl"
+                app:layout_constraintStart_toStartOf="@id/pie_gl"
+                app:layout_constraintTop_toTopOf="@id/pie_gl">
+
+                <TextView
+                    android:id="@+id/tv_gl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.7"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_gl_flag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(High)"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Nutrition Facts (500 g)"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/dummy_cal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_stroke_black"
+            android:padding="6dp"
+            android:text="Calories (kcal)"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@id/tv_cal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_cal"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_stroke_black"
+            android:gravity="center"
+            android:padding="6dp"
+            android:text="135.0"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/dummy_cal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/dummy_cal" />
+
+        <TextView
+            android:id="@+id/dummy_carb"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_stroke_black"
+            android:padding="6dp"
+            android:text="Carbohydrates (g)"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@id/tv_cal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dummy_cal" />
+
+        <TextView
+            android:id="@+id/tv_carb"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_stroke_black"
+            android:gravity="center"
+            android:padding="6dp"
+            android:text="135.0"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/dummy_carb"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/dummy_carb" />
+
+        <TextView
+            android:id="@+id/dummy_proteins"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_stroke_black"
+            android:padding="6dp"
+            android:text="Proteins (g)"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@id/tv_cal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dummy_carb" />
+
+        <TextView
+            android:id="@+id/tv_proteins"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_stroke_black"
+            android:gravity="center"
+            android:padding="6dp"
+            android:text="18.5"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/dummy_proteins"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/dummy_proteins" />
+
+        <TextView
+            android:id="@+id/dummy_fats"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_stroke_black"
+            android:padding="6dp"
+            android:text="Fats (g)"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@id/tv_cal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dummy_proteins" />
+
+        <TextView
+            android:id="@+id/tv_fats"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_stroke_black"
+            android:gravity="center"
+            android:padding="6dp"
+            android:text="3.5"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/dummy_fats"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/dummy_fats" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>
