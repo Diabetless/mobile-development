@@ -5,11 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
-import com.ch2Ps073.diabetless.data.local.user.pref.UserRepository
 import com.ch2Ps073.diabetless.data.remote.response.Article
+import com.ch2Ps073.diabetless.data.local.user.pref.UserRepository
 import com.ch2Ps073.diabetless.utils.Event
-import com.ch2Ps073.diabetless.utils.Result
 import kotlinx.coroutines.launch
+import com.ch2Ps073.diabetless.utils.Result
 
 class DetailViewModel(
     private val id: String,

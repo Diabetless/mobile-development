@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ch2Ps073.diabetless.data.remote.response.ArticleItem
-import com.ch2Ps073.diabetless.databinding.ItemArticlesRowBinding
 import com.bumptech.glide.Glide
+import com.ch2Ps073.diabetless.databinding.ItemArticlesRowBinding
 
 class ArticlesAdapter : RecyclerView.Adapter<ArticlesAdapter.ViewHolder>() {
     private val articleList: ArrayList<ArticleItem> = arrayListOf()

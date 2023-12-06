@@ -1,5 +1,6 @@
 package com.ch2Ps073.diabetless.data.remote
 
+import com.ch2Ps073.diabetless.data.remote.retrofit.ApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -7,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiConfig {
 
-    var BASE_URL = "https://backend-sggimrersq-et.a.run.app/"
+    private var BASE_URL = "https://backend-sggimrersq-et.a.run.app/"
 
     fun getApiService(): ApiService {
         val loggingInterceptor = HttpLoggingInterceptor()

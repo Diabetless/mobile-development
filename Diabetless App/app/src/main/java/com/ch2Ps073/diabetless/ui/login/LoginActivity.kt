@@ -30,7 +30,7 @@ import retrofit2.HttpException
 
 class LoginActivity : AppCompatActivity() {
     private val viewModel by viewModels<LoginViewModel> {
-        ViewModelFactory.getInstance(this)
+        LoginViewModelFactory.getInstance(this,lifecycleScope)
     }
 
     private lateinit var binding: ActivityLoginBinding
@@ -89,40 +89,8 @@ class LoginActivity : AppCompatActivity() {
         binding.loginButton.setOnClickListener {
             val email = binding.emailEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
-            var TOKEN : String
 
-            lifecycleScope.launch {
-                try {
-                    val apiService = ApiConfig.getApiService()
-                    val successResponse = apiService.login(email, password)
-                    val token = successResponse.token
-                    TOKEN = token
-
-                    if (TOKEN != "") {
-                        viewModel.saveSession(UserModel(email, "linha", "Bearer $token"))
-                        AlertDialog.Builder(this@LoginActivity).apply {
-                            setTitle("Yeah!")
-                            setMessage("Anda berhasil login.")
-                            setPositiveButton("Lanjut") { _, _ ->
-                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                intent.flags =
-                                    Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                                startActivity(intent)
-                                finish()
-                            }
-                            create()
-                            show()
-                        }
-                    } else showToast(TOKEN)
-
-                    showLoading(false)
-                } catch (e: HttpException) {
-                    val errorBody = e.response()?.errorBody()?.string()
-                    val errorResponse = Gson().fromJson(errorBody, RegisterResponse::class.java)
-                    showToast(errorResponse.message)
-                    showLoading(false)
-                }
-            }
+            viewModel.performLogin(email, password)
         }
     }
 

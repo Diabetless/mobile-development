@@ -9,6 +9,8 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.ch2Ps073.diabetless.R
@@ -18,11 +20,16 @@ import com.ch2Ps073.diabetless.databinding.ActivitySignupBinding
 import com.ch2Ps073.diabetless.ui.customView.CustomSignupButton
 import com.ch2Ps073.diabetless.ui.customView.PasswordEditText
 import com.ch2Ps073.diabetless.ui.login.LoginActivity
+import com.ch2Ps073.diabetless.ui.login.LoginViewModel
+import com.ch2Ps073.diabetless.ui.login.LoginViewModelFactory
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
 class SignupActivity : AppCompatActivity() {
+    private val viewModel by viewModels<SignupViewModel> {
+        SignupViewModelFactory.getInstance(this,lifecycleScope)
+    }
 
     private lateinit var binding: ActivitySignupBinding
     private lateinit var myButton: CustomSignupButton
@@ -50,9 +57,9 @@ class SignupActivity : AppCompatActivity() {
             }
         })
 
-        binding.signupButton.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
-        }
+//        binding.signupButton.setOnClickListener {
+//            startActivity(Intent(this, LoginActivity::class.java))
+//        }
 
         binding.loginTextButton.setOnClickListener{
             startActivity(Intent(this, LoginActivity::class.java))
@@ -66,20 +73,7 @@ class SignupActivity : AppCompatActivity() {
             val username = binding.usernameEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
 
-            lifecycleScope.launch {
-                try {
-                    val apiService = ApiConfig.getApiService()
-                    val successResponse = apiService.register(name, email, username, password)
-                    val toastSuccess = successResponse.message
-                    showToast(toastSuccess)
-                    showLoading(false)
-                } catch (e: HttpException) {
-                    val errorBody = e.response()?.errorBody()?.string()
-                    val errorResponse = Gson().fromJson(errorBody, RegisterResponse::class.java)
-                    showToast(errorResponse.message)
-                    showLoading(false)
-                }
-            }
+            viewModel.signupUser(name, email, username, password)
         }
     }
 

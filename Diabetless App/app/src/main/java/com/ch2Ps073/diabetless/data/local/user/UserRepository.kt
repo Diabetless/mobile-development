@@ -1,7 +1,7 @@
 package com.ch2Ps073.diabetless.data.local.user.pref
 
 import androidx.lifecycle.liveData
-import com.ch2Ps073.diabetless.data.remote.ApiService
+import com.ch2Ps073.diabetless.data.remote.retrofit.ApiService
 import kotlinx.coroutines.flow.Flow
 import com.ch2Ps073.diabetless.utils.Result
 
@@ -9,7 +9,6 @@ class UserRepository private constructor(
     private val userPreference: UserPreference,
     private val apiService: ApiService
 ) {
-
     fun getArticles() = liveData {
         emit(Result.Loading)
         try {
@@ -25,6 +24,26 @@ class UserRepository private constructor(
         try {
             val detailArticleResponse = apiService.getDetailArticle(id)
             emit(Result.Success(detailArticleResponse))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+        }
+    }
+
+    fun getMeals() = liveData {
+        emit(Result.Loading)
+        try {
+            val mealsResponse = apiService.getAllMeals()
+            emit(Result.Success(mealsResponse))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+        }
+    }
+
+    fun getDetailMeal(id: String) = liveData {
+        emit(Result.Loading)
+        try {
+            val detailMealResponse = apiService.getDetailMeals(id)
+            emit(Result.Success(detailMealResponse))
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
         }

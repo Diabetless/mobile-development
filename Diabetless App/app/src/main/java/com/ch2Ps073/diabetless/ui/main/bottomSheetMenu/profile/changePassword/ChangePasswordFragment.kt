@@ -17,4 +17,8 @@ class ChangePasswordFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_change_password, container, false)
     }
+
+    companion object{
+        const val TAG = "ChangePasswordFragment"
+    }
 }

@@ -7,10 +7,10 @@ import android.text.Html
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
+import com.bumptech.glide.Glide
 import com.ch2Ps073.diabetless.data.local.user.di.Injection
 import com.ch2Ps073.diabetless.databinding.ActivityDetailBinding
-import com.ch2Ps073.diabetless.ui.main.MainActivity.Companion.KEY_ID
-import com.bumptech.glide.Glide
+import com.ch2Ps073.diabetless.ui.articles.ArticlesActivity.Companion.KEY_ID
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
