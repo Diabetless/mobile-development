@@ -5,14 +5,12 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -21,7 +19,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.ch2Ps073.diabetless.R
 import com.ch2Ps073.diabetless.databinding.ActivityMainBinding
 import com.ch2Ps073.diabetless.ui.ViewModelFactory
-import com.ch2Ps073.diabetless.ui.main.ui.glycemic.GlycemicIndexFragment
 import com.ch2Ps073.diabetless.ui.splashscreen.SplashScreen
 import com.ch2Ps073.diabetless.ui.welcome.WelcomePage
 import com.google.android.material.bottomnavigation.BottomNavigationView

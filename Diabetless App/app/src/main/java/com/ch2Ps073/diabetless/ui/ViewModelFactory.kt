@@ -10,6 +10,7 @@ import com.ch2Ps073.diabetless.ui.login.LoginViewModel
 import com.ch2Ps073.diabetless.ui.main.MainViewModel
 import com.ch2Ps073.diabetless.ui.main.bottomSheetMenu.profile.ProfileSettingViewModel
 import com.ch2Ps073.diabetless.ui.main.ui.mealPlanner.MealPlanIndexViewModel
+import com.ch2Ps073.diabetless.ui.splashscreen.SplashScreenViewModel
 
 class ViewModelFactory(private val repository: UserRepository) :
     ViewModelProvider.NewInstanceFactory() {
@@ -35,6 +36,10 @@ class ViewModelFactory(private val repository: UserRepository) :
 
             modelClass.isAssignableFrom(MealPlanIndexViewModel::class.java) -> {
                 MealPlanIndexViewModel(repository) as T
+            }
+
+            modelClass.isAssignableFrom(SplashScreenViewModel::class.java) -> {
+                SplashScreenViewModel(repository) as T
             }
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
