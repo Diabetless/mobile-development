@@ -2,19 +2,73 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo2"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/logo2"
         android:supportsRtl="true"
         android:theme="@style/Theme.Diabetless"
         tools:targetApi="31">
         <activity
-            android:name=".ui.splashscreen.SplashScreen"
+            android:name=".ui.main.ui.health.bloodSugar.history.HistoryBloodActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.main.ui.health.bodyComposition.BodyCompositionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.main.ui.health.bodyComposition.bodyCompositionActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_body_composition"
+            android:theme="@style/Theme.Diabetless.Fullscreen" />
+        <activity
+            android:name=".ui.main.ui.health.bloodSugar.BloodSugarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.main.ui.mealPlanner.mealCart.MealCartActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.Diabetless.NoActionBar" />
+        <activity
+            android:name=".ui.main.ui.mealPlanner.favorites.FavoritesActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.Diabetless.NoActionBar" />
+        <activity
+            android:name=".ui.main.ui.mealPlanner.mealDetail.MealDetailActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.Diabetless.NoActionBar" />
+        <activity
+            android:name=".ui.detail.DetailActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.Diabetless.NoActionBar" />
+        <activity
+            android:name=".ui.articles.ArticlesActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.Diabetless.NoActionBar" />
+        <activity
+            android:name=".ui.main.bottomSheetMenu.profile.ProfileSettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="true"
+            android:label="@string/title_activity_main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.splashscreen.SplashScreen"
+            android:exported="false"
+            android:theme="@style/Base.Theme.Diabetless.NoActionBar" />
         <activity
             android:name=".ui.welcome.WelcomePage"
             android:exported="false" />
@@ -24,15 +78,6 @@
         <activity
             android:name=".ui.register.SignupActivity"
             android:exported="false" />
-        <activity
-            android:name=".ui.main.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
         <meta-data
             android:name="preloaded_fonts"

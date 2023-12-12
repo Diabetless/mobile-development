@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_glycemic"
+        android:icon="@drawable/ic_baseline_camera_alt_24"
+        android:title="@string/title_camera" />
+
+    <item
+        android:id="@+id/navigation_meal_planner"
+        android:icon="@drawable/ic_baseline_rice_bowl_24"
+        android:title="@string/title_meal" />
+
+    <item
+        android:id="@+id/navigation_health"
+        android:icon="@drawable/ic_baseline_monitor_heart_24"
+        android:title="@string/title_health"
+        />
+
+</menu>

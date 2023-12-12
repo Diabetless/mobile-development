@@ -11,8 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:fontFamily="@font/poppins_medium"
         android:text="@string/login"
+        android:fontFamily="@font/poppins_medium"
         android:textColor="@color/dark_blue"
         android:textSize="32sp"
         android:textStyle="bold"
@@ -36,7 +36,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:alpha="0"
         android:text="@string/email"
         android:textColor="@color/dark_blue"
         android:textSize="16sp"
@@ -47,12 +46,11 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailEditTextLayout"
-        style="?attr/textInputFilledStyle"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:alpha="0"
         app:boxBackgroundMode="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +73,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:alpha="0"
         android:text="@string/password"
         android:textColor="@color/dark_blue"
         android:textSize="16sp"
@@ -86,12 +83,11 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordEditTextLayout"
-        style="?attr/textInputFilledStyle"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:alpha="0"
         app:boxBackgroundMode="none"
         app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -99,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/passwordTextView"
         tools:alpha="100">
 
-        <com.CH2PS073.diabetless.ui.customView.PasswordEditText
+        <com.ch2Ps073.diabetless.ui.customView.PasswordEditText
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -122,14 +118,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout" />
 
-    <com.CH2PS073.diabetless.ui.customView.CustomLoginButton
+    <com.ch2Ps073.diabetless.ui.customView.CustomLoginButton
         android:id="@+id/loginButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:alpha="0"
         android:enabled="false"
         android:text="@string/login"
         app:layout_constraintEnd_toEndOf="parent"
