@@ -3,13 +3,13 @@ package com.ch2Ps073.diabetless.data.remote.retrofit
 
 import com.ch2Ps073.diabetless.data.remote.response.ArticlesResponse
 import com.ch2Ps073.diabetless.data.remote.response.DetailArticleResponse
+import com.ch2Ps073.diabetless.data.remote.response.FileUploadResponse
+import com.ch2Ps073.diabetless.data.remote.response.HealthUserResponse
 import com.ch2Ps073.diabetless.data.remote.response.ListUser
 import com.ch2Ps073.diabetless.data.remote.response.MealDetailResponse
 import com.ch2Ps073.diabetless.data.remote.response.MealsResponse
 import com.ch2Ps073.diabetless.data.remote.response.RegisterResponse
-import com.ch2Ps073.diabetless.data.remote.response.UpdateUserResponse
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -59,13 +59,39 @@ interface ApiService {
         @Path("id") id: String
     ): MealDetailResponse
 
-    @Multipart
+    @FormUrlEncoded
     @PUT("/users/edit-profile")
     suspend fun updateUser(
         @Header("Authorization") token: String,
-        @Part("fullName") fullName: RequestBody,
-        @Part("username") username: RequestBody,
+        @Field("fullName") fullName: String,
+        @Field("username") username: String,
+        @Field("email") email: String
+    ): FileUploadResponse
+
+    @Multipart
+    @PUT("/users/profile-picture")
+    suspend fun updateUserPhotoP(
+        @Header("Authorization") token: String,
         @Part image: MultipartBody.Part,
-        @Part("email") email: RequestBody
-    ): UpdateUserResponse
+    ): FileUploadResponse
+
+    @FormUrlEncoded
+    @POST("/users/blood-sugar")
+    suspend fun setBloodSL(
+        @Header("Authorization") token: String,
+        @Field("bloodSugarLevel") bloodSugarLevel: Int,
+    ): FileUploadResponse
+
+    @FormUrlEncoded
+    @POST("/users/bmi")
+    suspend fun setBody(
+        @Header("Authorization") token: String,
+        @Field("height") height: Int,
+        @Field("weight") weight: Int,
+    ): FileUploadResponse
+
+    @GET("/users/health")
+    fun getHealth(
+        @Header("Authorization") token: String
+    ): Call<HealthUserResponse>
 }

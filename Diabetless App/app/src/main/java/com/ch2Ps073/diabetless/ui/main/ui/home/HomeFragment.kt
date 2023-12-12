@@ -6,31 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import com.ch2Ps073.diabetless.R
-import com.ch2Ps073.diabetless.databinding.FragmentHomeBinding
-import com.ch2Ps073.diabetless.ui.articles.ArticlesActivity
-import com.ch2Ps073.diabetless.ui.main.bottomSheetMenu.BottomSheetMenuFragment
-import com.ch2Ps073.diabetless.ui.main.ui.glycemic.GlycemicIndexFragment
-import com.ch2Ps073.diabetless.ui.main.ui.health.HealthFragment
-import com.ch2Ps073.diabetless.ui.main.ui.mealPlanner.MealPlanFragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
+import com.ch2Ps073.diabetless.R
 import com.ch2Ps073.diabetless.data.remote.response.ArticleItem
+import com.ch2Ps073.diabetless.databinding.FragmentHomeBinding
 import com.ch2Ps073.diabetless.ui.ViewModelFactory
-import com.ch2Ps073.diabetless.ui.adapter.ArticlesAdapter
 import com.ch2Ps073.diabetless.ui.adapter.CarouselAdapter
+import com.ch2Ps073.diabetless.ui.articles.ArticlesActivity
 import com.ch2Ps073.diabetless.ui.articles.ArticlesViewModel
-import com.google.android.material.carousel.CarouselLayoutManager
+import com.ch2Ps073.diabetless.ui.main.bottomSheetMenu.BottomSheetMenuFragment
 
 
 class HomeFragment : Fragment() {

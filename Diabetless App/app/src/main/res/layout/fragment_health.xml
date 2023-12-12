@@ -70,7 +70,7 @@
                 android:padding="8dp">
 
                 <TextView
-                    android:id="@+id/bloodCardText1"
+                    android:id="@+id/bloodCardNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -78,6 +78,7 @@
                     android:fontFamily="@font/poppins_medium"
                     android:text="--"
                     android:textSize="14sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -90,7 +91,7 @@
                     android:fontFamily="@font/poppins_medium"
                     android:text="mg/dl"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@+id/bloodCardText1"
+                    app:layout_constraintStart_toEndOf="@+id/bloodCardNumber"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
@@ -139,27 +140,53 @@
                 android:padding="8dp">
 
                 <TextView
-                    android:id="@+id/bodyCardText1"
+                    android:id="@+id/bodyCardTextNumberCM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="170cm"
+                    android:text="..."
                     android:textSize="14sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/bodyCardText1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="cm"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/bodyCardTextNumberCM"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/bodyCardTextNumberKG"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="..."
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/bodyCardText1"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/bodyCardText2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="50kg"
+                    android:text="Kg"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@+id/bodyCardText1"
+                    app:layout_constraintStart_toEndOf="@+id/bodyCardTextNumberKG"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
@@ -213,46 +240,98 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Avg 18.43"
+                    android:text="Avg"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/avgChartNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="..."
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/avgChartText"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/minChartText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Min 17.4"
+                    android:text="Min"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@+id/avgChartText"
+                    app:layout_constraintStart_toEndOf="@+id/avgChartNumber"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/minChartNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="..."
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/minChartText"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/maxChartText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Max 19.3"
+                    android:text="Max"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@+id/minChartText"
+                    app:layout_constraintStart_toEndOf="@+id/minChartNumber"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/maxChartNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="..."
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/maxChartText"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/healthLineChart"
                     android:layout_width="match_parent"
                     android:layout_height="400dp"
-                    android:layout_marginBottom="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/minChartText" />
+                    app:layout_constraintTop_toBottomOf="@+id/minChartNumber" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="128dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

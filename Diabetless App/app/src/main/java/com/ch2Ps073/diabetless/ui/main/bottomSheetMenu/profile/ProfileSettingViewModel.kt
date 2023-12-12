@@ -2,7 +2,6 @@ package com.ch2Ps073.diabetless.ui.main.bottomSheetMenu.profile
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -10,21 +9,15 @@ import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.ch2Ps073.diabetless.data.local.user.pref.UserModel
 import com.ch2Ps073.diabetless.data.remote.ApiConfig
 import com.ch2Ps073.diabetless.data.remote.response.DetailUser
+import com.ch2Ps073.diabetless.data.remote.response.FileUploadResponse
 import com.ch2Ps073.diabetless.data.remote.response.ListUser
-import com.ch2Ps073.diabetless.data.remote.response.RegisterResponse
-import com.ch2Ps073.diabetless.data.remote.response.UpdateUserResponse
-import com.ch2Ps073.diabetless.ui.login.LoginViewModel
-import com.ch2Ps073.diabetless.ui.main.MainActivity
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
-import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.HttpException
@@ -71,15 +64,9 @@ class ProfileSettingViewModel(private val context: Context,
     }
 
     fun editProfile(token: String, name: String, email: String, imageFile: File, username: String) {
-
-        val fullNameR = name.toRequestBody(MultipartBody.FORM)
-        val usernameR = email.toRequestBody(MultipartBody.FORM)
-        val emailR = username.toRequestBody(MultipartBody.FORM)
-
-
-        val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
+        val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
         val multipartBody = MultipartBody.Part.createFormData(
-            "photo",
+            "image",
             imageFile.name,
             requestImageFile
         )
@@ -87,10 +74,12 @@ class ProfileSettingViewModel(private val context: Context,
         lifecycleScope.launch {
             try {
                 val apiService = ApiConfig.getApiService()
-                val successResponse =
-                    apiService.updateUser(token, fullNameR, usernameR, multipartBody, emailR)
+                val successResponse = apiService.updateUser(token, name, username, email)
+                val successResponse2 = apiService.updateUserPhotoP(token, multipartBody)
                 val toastSuccess = successResponse.message
+                val toastSuccess2 = successResponse2.message
                 showToast(toastSuccess)
+                showToast(toastSuccess2)
                 showSuccessDialog()
             } catch (e: HttpException) {
                 handleHttpException(e)
@@ -115,7 +104,7 @@ class ProfileSettingViewModel(private val context: Context,
 
     private fun handleHttpException(exception: HttpException) {
         val errorBody = exception.response()?.errorBody()?.string()
-        val errorResponse = Gson().fromJson(errorBody, UpdateUserResponse::class.java)
+        val errorResponse = Gson().fromJson(errorBody, FileUploadResponse::class.java)
         Log.d("ApiResponse", errorBody ?: "$errorResponse")
         AlertDialog.Builder(context).apply {
             setTitle("Edit Profile gagal!")

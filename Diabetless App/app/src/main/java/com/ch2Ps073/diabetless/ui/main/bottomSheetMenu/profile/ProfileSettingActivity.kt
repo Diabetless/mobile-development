@@ -1,15 +1,9 @@
 package com.ch2Ps073.diabetless.ui.main.bottomSheetMenu.profile
 
 import android.Manifest
-import android.content.ContentValues
-import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.os.Environment
-import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
@@ -17,7 +11,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -27,15 +20,9 @@ import com.ch2Ps073.diabetless.databinding.ActivityProfileSettingBinding
 import com.ch2Ps073.diabetless.ui.ViewModelFactory
 import com.ch2Ps073.diabetless.ui.main.MainViewModel
 import com.ch2Ps073.diabetless.ui.main.bottomSheetMenu.profile.changePassword.ChangePasswordFragment
-import com.ch2Ps073.diabetless.ui.main.ui.mealPlanner.MealPlanFragment
 import com.ch2Ps073.diabetless.utils.getImageUri
 import com.ch2Ps073.diabetless.utils.reduceFileImage
 import com.ch2Ps073.diabetless.utils.uriToFile
-import com.github.mikephil.charting.BuildConfig
-import java.io.File
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 class ProfileSettingActivity : AppCompatActivity() {
     private val mainViewModel by viewModels<MainViewModel> {
@@ -95,7 +82,6 @@ class ProfileSettingActivity : AppCompatActivity() {
                     viewModel.editProfile(user.token, name, email, imageFile, username)
 
                 }
-
             }
         }
 
