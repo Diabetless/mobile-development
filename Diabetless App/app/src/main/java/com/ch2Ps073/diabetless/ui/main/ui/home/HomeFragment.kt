@@ -7,19 +7,30 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+<<<<<<< HEAD
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+=======
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
+>>>>>>> chello
 import com.ch2Ps073.diabetless.R
 import com.ch2Ps073.diabetless.data.remote.response.ArticleItem
 import com.ch2Ps073.diabetless.databinding.FragmentHomeBinding
+<<<<<<< HEAD
 import com.ch2Ps073.diabetless.ui.ViewModelFactory
 import com.ch2Ps073.diabetless.ui.adapter.CarouselAdapter
 import com.ch2Ps073.diabetless.ui.articles.ArticlesActivity
 import com.ch2Ps073.diabetless.ui.articles.ArticlesViewModel
+=======
+import com.ch2Ps073.diabetless.ui.articles.ArticlesActivity
+import com.ch2Ps073.diabetless.ui.main.MainActivity
+>>>>>>> chello
 import com.ch2Ps073.diabetless.ui.main.bottomSheetMenu.BottomSheetMenuFragment
 
 
@@ -75,7 +86,16 @@ class HomeFragment : Fragment() {
         }
 
         binding.glycemicButton.setOnClickListener {
+<<<<<<< HEAD
             findNavController().navigate(R.id.navigation_glycemic)
+=======
+            val transaction = activity?.supportFragmentManager?.beginTransaction()
+            transaction?.replace(R.id.nav_host_fragment_activity_main, GlycemicIndexFragment())
+            transaction?.disallowAddToBackStack()
+            transaction?.commit()
+            val activity =  requireActivity() as MainActivity;
+            activity.binding.navView.isVisible = false
+>>>>>>> chello
         }
 
         binding.mealPlanButton.setOnClickListener {

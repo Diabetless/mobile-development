@@ -10,6 +10,10 @@ import com.ch2Ps073.diabetless.ui.login.LoginViewModel
 import com.ch2Ps073.diabetless.ui.main.MainViewModel
 import com.ch2Ps073.diabetless.ui.main.bottomSheetMenu.profile.ProfileSettingViewModel
 import com.ch2Ps073.diabetless.ui.main.ui.mealPlanner.MealPlanIndexViewModel
+<<<<<<< HEAD
+=======
+import com.ch2Ps073.diabetless.ui.splashscreen.SplashScreenViewModel
+>>>>>>> chello
 
 class ViewModelFactory(private val repository: UserRepository) :
     ViewModelProvider.NewInstanceFactory() {
@@ -17,6 +21,13 @@ class ViewModelFactory(private val repository: UserRepository) :
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
+<<<<<<< HEAD
+=======
+            modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
+                LoginViewModel(repository) as T
+            }
+
+>>>>>>> chello
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
                 MainViewModel(repository) as T
             }
@@ -25,10 +36,24 @@ class ViewModelFactory(private val repository: UserRepository) :
                 ArticlesViewModel(repository) as T
             }
 
+<<<<<<< HEAD
+=======
+            modelClass.isAssignableFrom(ProfileSettingViewModel::class.java) -> {
+                ProfileSettingViewModel() as T
+            }
+
+>>>>>>> chello
             modelClass.isAssignableFrom(MealPlanIndexViewModel::class.java) -> {
                 MealPlanIndexViewModel(repository) as T
             }
 
+<<<<<<< HEAD
+=======
+            modelClass.isAssignableFrom(SplashScreenViewModel::class.java) -> {
+                SplashScreenViewModel(repository) as T
+            }
+
+>>>>>>> chello
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }

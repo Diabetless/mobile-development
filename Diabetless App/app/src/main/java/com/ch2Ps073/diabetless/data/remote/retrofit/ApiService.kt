@@ -1,15 +1,27 @@
+<<<<<<< HEAD
 package com.ch2Ps073.diabetless.data.remote.retrofit
+=======
+package com.ch2Ps073.diabetless.data.remote
+>>>>>>> chello
 
 
 import com.ch2Ps073.diabetless.data.remote.response.ArticlesResponse
 import com.ch2Ps073.diabetless.data.remote.response.DetailArticleResponse
+<<<<<<< HEAD
 import com.ch2Ps073.diabetless.data.remote.response.FileUploadResponse
 import com.ch2Ps073.diabetless.data.remote.response.HealthUserResponse
+=======
+import com.ch2Ps073.diabetless.data.remote.response.DetectedMealResponse
+>>>>>>> chello
 import com.ch2Ps073.diabetless.data.remote.response.ListUser
 import com.ch2Ps073.diabetless.data.remote.response.MealDetailResponse
 import com.ch2Ps073.diabetless.data.remote.response.MealsResponse
 import com.ch2Ps073.diabetless.data.remote.response.RegisterResponse
 import okhttp3.MultipartBody
+<<<<<<< HEAD
+=======
+import okhttp3.RequestBody
+>>>>>>> chello
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -17,7 +29,10 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
+<<<<<<< HEAD
 import retrofit2.http.PUT
+=======
+>>>>>>> chello
 import retrofit2.http.Part
 import retrofit2.http.Path
 
@@ -38,6 +53,10 @@ interface ApiService {
         @Field("password") password: String
     ): RegisterResponse
 
+<<<<<<< HEAD
+=======
+    @FormUrlEncoded
+>>>>>>> chello
     @GET("users")
     fun getUser(
         @Header("Authorization") token: String
@@ -59,6 +78,7 @@ interface ApiService {
         @Path("id") id: String
     ): MealDetailResponse
 
+<<<<<<< HEAD
     @FormUrlEncoded
     @PUT("/users/edit-profile")
     suspend fun updateUser(
@@ -94,4 +114,11 @@ interface ApiService {
     fun getHealth(
         @Header("Authorization") token: String
     ): Call<HealthUserResponse>
+=======
+    @Multipart
+    @POST("meals/detect-food")
+    suspend fun getDetectedMeals(
+        @Part image: MultipartBody.Part
+    ) : DetectedMealResponse
+>>>>>>> chello
 }

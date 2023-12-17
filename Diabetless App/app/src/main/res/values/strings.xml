@@ -93,6 +93,7 @@
     <string name="old_password">Old Password</string>
     <string name="new_password">New Password</string>
     <string name="fullnameUlin">ulinnuha</string>
+<<<<<<< HEAD
     <string name="articles">Articles</string>
     <string name="see_history">See history</string>
     <string name="update">Update</string>
@@ -100,5 +101,7 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="save">Save</string>
+=======
+>>>>>>> chello
 
 </resources>

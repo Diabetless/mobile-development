@@ -11,10 +11,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ch2Ps073.diabetless.data.local.user.pref.UserModel
 import com.ch2Ps073.diabetless.data.local.user.pref.UserRepository
+<<<<<<< HEAD
 import com.ch2Ps073.diabetless.data.remote.ApiConfig
 import com.ch2Ps073.diabetless.data.remote.response.RegisterResponse
 import com.ch2Ps073.diabetless.ui.main.MainActivity
 import com.google.gson.Gson
+=======
+>>>>>>> chello
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 

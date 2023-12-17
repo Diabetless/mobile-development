@@ -1,6 +1,7 @@
 package com.ch2Ps073.diabetless.ui.login
 
 import android.content.Intent
+import android.content.pm.ApplicationInfo
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -51,9 +52,11 @@ class LoginActivity : AppCompatActivity() {
         myEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
             }
+
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 setMyButtonEnable()
             }
+
             override fun afterTextChanged(s: Editable) {
             }
         })
@@ -62,9 +65,11 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, SignupActivity::class.java))
         }
 
-        binding.forgotPassword.setOnClickListener{
+        binding.forgotPassword.setOnClickListener {
             showToast("fitur ini blom tersedia")
         }
+
+        debugMode()
     }
 
     private fun setMyButtonEnable() {
@@ -89,8 +94,54 @@ class LoginActivity : AppCompatActivity() {
         binding.loginButton.setOnClickListener {
             val email = binding.emailEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
+<<<<<<< HEAD
 
             viewModel.performLogin(email, password)
+=======
+            var TOKEN: String
+
+            lifecycleScope.launch {
+                try {
+                    val apiService = ApiConfig.getApiService()
+                    val successResponse = apiService.login(email, password)
+                    val toastSuccess = successResponse.message
+                    showToast(toastSuccess)
+                    val token = successResponse.token
+                    TOKEN = token
+
+                    if (TOKEN != "") {
+                        viewModel.saveSession(UserModel(email, "linha", token))
+                        AlertDialog.Builder(this@LoginActivity).apply {
+                            setTitle("Yeah!")
+                            setMessage("Anda berhasil login.")
+                            setPositiveButton("Lanjut") { _, _ ->
+                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                startActivity(intent)
+                                finish()
+                            }
+                            create()
+                            show()
+                        }
+                    } else showToast(TOKEN)
+
+                    showLoading(false)
+                } catch (e: HttpException) {
+                    val errorBody = e.response()?.errorBody()?.string()
+                    val errorResponse = Gson().fromJson(errorBody, RegisterResponse::class.java)
+                    AlertDialog.Builder(this@LoginActivity).apply {
+                        setTitle("Email atau password anda salah")
+                        setMessage("email anda :\"$email\" \npassword anda : \"$password\"\n$errorResponse")
+                        setPositiveButton("coba lagi") { _, _ ->
+                        }
+                        create()
+                        show()
+                    }
+                    showLoading(false)
+                }
+            }
+>>>>>>> chello
         }
     }
 
@@ -101,4 +152,15 @@ class LoginActivity : AppCompatActivity() {
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
+<<<<<<< HEAD
+=======
+
+    private fun debugMode() {
+        val debugable = applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
+        if (debugable) {
+            binding.emailEditText.setText("illoanaa15@gmail.com")
+            binding.passwordEditText.setText("12345678")
+        }
+    }
+>>>>>>> chello
 }

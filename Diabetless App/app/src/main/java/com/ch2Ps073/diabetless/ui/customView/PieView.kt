@@ -7,6 +7,10 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
+<<<<<<< HEAD
+=======
+import androidx.core.view.marginBottom
+>>>>>>> chello
 import androidx.core.view.marginEnd
 import androidx.core.view.marginStart
 import androidx.core.view.marginTop
@@ -29,6 +33,10 @@ class PieView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
     override fun onDraw(canvas: Canvas) {
         val startTop = 0.0f + marginTop
+<<<<<<< HEAD
+=======
+        val startBottom = 0.0f
+>>>>>>> chello
         val startLeft = 0.0f + marginStart
         val endRight = width.toFloat() - marginEnd
 

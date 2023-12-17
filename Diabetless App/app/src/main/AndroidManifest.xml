@@ -2,9 +2,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+<<<<<<< HEAD
     <uses-feature android:name="android.hardware.camera" />
 
     <uses-permission android:name="android.permission.CAMERA" />
+=======
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+>>>>>>> chello
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -16,13 +29,53 @@
         android:roundIcon="@mipmap/logo2"
         android:supportsRtl="true"
         android:theme="@style/Theme.Diabetless"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        android:requestLegacyExternalStorage="true">
         <activity
+            android:name=".ui.main.ui.mealPlanner.mealCart.MealCartActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.Diabetless.NoActionBar" />
+        <activity
+            android:name=".ui.main.ui.mealPlanner.favorites.FavoritesActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.Diabetless.NoActionBar" />
+        <activity
+            android:name=".ui.main.ui.mealPlanner.mealDetail.MealDetailActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.Diabetless.NoActionBar" />
+        <activity
+<<<<<<< HEAD
             android:name=".ui.main.ui.health.bloodSugar.history.HistoryBloodActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.ui.health.bodyComposition.BodyCompositionActivity"
             android:exported="false" />
+=======
+            android:name=".ui.detail.DetailActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.Diabetless.NoActionBar" />
+        <activity
+            android:name=".ui.articles.ArticlesActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.Diabetless.NoActionBar" />
+        <activity
+            android:name=".ui.main.bottomSheetMenu.profile.ProfileSettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="true"
+            android:label="@string/title_activity_main" />
+        <activity
+            android:name=".ui.splashscreen.SplashScreen"
+            android:exported="true"
+            android:theme="@style/Base.Theme.Diabetless.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+>>>>>>> chello
         <activity
             android:name=".ui.main.ui.health.bodyComposition.bodyCompositionActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

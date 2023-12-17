@@ -10,17 +10,31 @@ import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+<<<<<<< HEAD
 import com.ch2Ps073.diabetless.data.local.db.RoomRepository
 import com.ch2Ps073.diabetless.data.remote.response.Meal
 import com.ch2Ps073.diabetless.databinding.ActivityFavoritesBinding
 import com.ch2Ps073.diabetless.ui.adapter.MealsFavoriteAdapter
 import com.ch2Ps073.diabetless.ui.main.ui.mealPlanner.mealDetail.MealDetailActivity
+=======
+import com.CH2PS073.diabetless.ui.adapter.MealsAdapter
+import com.CH2PS073.diabetless.ui.adapter.MealsFavoriteAdapter
+import com.ch2Ps073.diabetless.data.local.db.RoomRepository
+import com.ch2Ps073.diabetless.data.remote.response.Meal
+import com.ch2Ps073.diabetless.databinding.ActivityFavoritesBinding
+import com.ch2Ps073.diabetless.ui.main.ui.mealPlanner.mealDetail.MealDetailActivity
+import com.ch2Ps073.diabetless.ui.main.ui.mealPlanner.mealDetail.MealDetailViewModelFactory
+>>>>>>> chello
 
 class FavoritesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFavoritesBinding
     private val mealsAdapter = MealsFavoriteAdapter()
 
+<<<<<<< HEAD
     private val favoritesViewModel by viewModels<FavoritesViewModel> {
+=======
+    val favoritesViewModel by viewModels<FavoritesViewModel> {
+>>>>>>> chello
         FavoritesViewModelFactory(
             RoomRepository(this.application)
         )

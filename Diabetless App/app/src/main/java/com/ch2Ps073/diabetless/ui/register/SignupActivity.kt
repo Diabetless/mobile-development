@@ -9,7 +9,10 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+<<<<<<< HEAD
 import androidx.activity.viewModels
+=======
+>>>>>>> chello
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -20,8 +23,11 @@ import com.ch2Ps073.diabetless.databinding.ActivitySignupBinding
 import com.ch2Ps073.diabetless.ui.customView.CustomSignupButton
 import com.ch2Ps073.diabetless.ui.customView.PasswordEditText
 import com.ch2Ps073.diabetless.ui.login.LoginActivity
+<<<<<<< HEAD
 import com.ch2Ps073.diabetless.ui.login.LoginViewModel
 import com.ch2Ps073.diabetless.ui.login.LoginViewModelFactory
+=======
+>>>>>>> chello
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -73,7 +79,32 @@ class SignupActivity : AppCompatActivity() {
             val username = binding.usernameEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
 
+<<<<<<< HEAD
             viewModel.signupUser(name, email, username, password)
+=======
+            lifecycleScope.launch {
+                try {
+                    val apiService = ApiConfig.getApiService()
+                    val successResponse = apiService.register(name, email, username, password)
+                    val toastSuccess = successResponse.message
+                    AlertDialog.Builder(this@SignupActivity).apply {
+                        setTitle("Email dan password")
+                        setMessage("email anda :\"$email\" \npassword anda : \"$password\"\n$toastSuccess")
+                        setPositiveButton("Lanjut") { _, _ ->
+                            startActivity(Intent(this@SignupActivity, LoginActivity::class.java))
+                        }
+                        create()
+                        show()
+                    }
+                    showLoading(false)
+                } catch (e: HttpException) {
+                    val errorBody = e.response()?.errorBody()?.string()
+                    val errorResponse = Gson().fromJson(errorBody, RegisterResponse::class.java)
+                    showToast(errorResponse.message)
+                    showLoading(false)
+                }
+            }
+>>>>>>> chello
         }
     }
 

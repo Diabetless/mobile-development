@@ -5,10 +5,18 @@ import android.os.Build
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ch2Ps073.diabetless.databinding.ActivityWelcomePageBinding
+<<<<<<< HEAD
 import com.ch2Ps073.diabetless.ui.login.LoginActivity
 import com.ch2Ps073.diabetless.ui.register.SignupActivity
+=======
+import com.ch2Ps073.diabetless.ui.adapter.WelcomePagerAdapter
+import com.ch2Ps073.diabetless.ui.login.LoginActivity
+import com.ch2Ps073.diabetless.ui.register.SignupActivity
+import com.google.android.material.tabs.TabLayoutMediator
+>>>>>>> chello
 
 class WelcomePage : AppCompatActivity() {
 
@@ -20,6 +28,7 @@ class WelcomePage : AppCompatActivity() {
         setContentView(binding.root)
 
         setupView()
+        setupViewPager()
         setupAction()
     }
 
@@ -34,6 +43,15 @@ class WelcomePage : AppCompatActivity() {
             )
         }
         supportActionBar?.hide()
+    }
+
+    private fun setupViewPager() {
+        val sectionPagerAdapter = WelcomePagerAdapter(this)
+        binding.viewPager.adapter = sectionPagerAdapter
+        binding.dotsIndicator.attachTo(binding.viewPager)
+//        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+//            tab.text = resources.getString(tabTitles[position])
+//        }.attach()
     }
 
     private fun setupAction() {

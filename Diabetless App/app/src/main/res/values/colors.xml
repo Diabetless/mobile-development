@@ -11,6 +11,7 @@
 
     <color name="pink_light">#E4C0BE</color>
     <color name="pink_light_214">#D6C7C7</color>
+<<<<<<< HEAD
     <color name="deepBlue">#315098</color>
     <color name="blueGray">#8CA8BE</color>
     <color name="gray">#767676</color>
@@ -22,4 +23,14 @@
     <color name="black_overlay">#66000000</color>
 
     <color name="empty">#00000000</color>
+=======
+    <color name="dongker">#315098</color>
+    <color name="gray">#767676</color>
+    <color name="gray_light">#F3F3F3</color>
+
+    <color name="green">#4CBB17</color>
+    <color name="red">#E30505</color>
+    <color name="yellow">#EFF201</color>
+
+>>>>>>> chello
 </resources>
