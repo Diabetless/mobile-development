@@ -2,7 +2,6 @@ package com.ch2Ps073.diabetless.ui.main
 
 import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -11,7 +10,6 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -20,9 +18,7 @@ import com.ch2Ps073.diabetless.R
 import com.ch2Ps073.diabetless.databinding.ActivityMainBinding
 import com.ch2Ps073.diabetless.ui.ViewModelFactory
 import com.ch2Ps073.diabetless.ui.splashscreen.SplashScreen
-import com.ch2Ps073.diabetless.ui.welcome.WelcomePage
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationBarView
 
 class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<MainViewModel> {
@@ -42,8 +38,6 @@ class MainActivity : AppCompatActivity() {
                 finish()
             } else {
                 setContentView(binding.root)
-
-                checkImagePermission()
 
                 val navView: BottomNavigationView = binding.navView
 
@@ -93,15 +87,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkImagePermission() = REQUIRED_CAMERA_PERMISSION.all {
-        ContextCompat.checkSelfPermission(
-            baseContext,
-            it
-        ) == PackageManager.PERMISSION_GRANTED
-    }
-
     companion object {
-        private val REQUIRED_CAMERA_PERMISSION = arrayOf(Manifest.permission.CAMERA)
-        private const val REQUEST_CODE_PERMISSIONS = 101
+        val REQUIRED_REQUIRED_PERMISSION = arrayOf(
+            Manifest.permission.CAMERA,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
+        const val REQUEST_CODE_PERMISSIONS = 101
     }
 }

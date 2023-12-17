@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.ch2Ps073.diabetless.R
 import com.ch2Ps073.diabetless.databinding.FragmentHomeBinding
 import com.ch2Ps073.diabetless.ui.articles.ArticlesActivity
