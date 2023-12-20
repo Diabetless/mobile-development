@@ -10,10 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.CH2PS073.diabetless.ui.adapter.MealCartAdapter
 import com.ch2Ps073.diabetless.data.local.db.RoomRepository
 import com.ch2Ps073.diabetless.data.remote.response.MealCart
 import com.ch2Ps073.diabetless.databinding.ActivityMealCartBinding
+import com.ch2Ps073.diabetless.ui.adapter.MealCartAdapter
 import com.ch2Ps073.diabetless.ui.main.ui.mealPlanner.mealDetail.MealDetailActivity
 
 class MealCartActivity : AppCompatActivity() {

@@ -93,5 +93,15 @@
     <string name="old_password">Old Password</string>
     <string name="new_password">New Password</string>
     <string name="fullnameUlin">ulinnuha</string>
+    <string name="articles">Articles</string>
+    <string name="see_history">See history</string>
+    <string name="update">Update</string>
+    <string name="title_activity_body_composition">bodyCompositionActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="save">Save</string>
+    <string name="birthday">Birthday</string>
+    <string name="birthdaynull">Birthday is not set!</string>
+    <string name="edit_profile">Edit Profile</string>
 
 </resources>

@@ -4,42 +4,45 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.database.Cursor
 import android.os.Bundle
-import android.provider.OpenableColumns
 import android.util.Log
-import android.util.Size
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.Camera
+import androidx.camera.core.CameraInfoUnavailableException
 import androidx.camera.core.CameraSelector
+import androidx.camera.core.FocusMeteringAction
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
+import androidx.camera.core.MeteringPointFactory
 import androidx.camera.core.Preview
+import androidx.camera.core.SurfaceOrientedMeteringPointFactory
 import androidx.camera.core.resolutionselector.ResolutionSelector
-import androidx.camera.core.resolutionselector.ResolutionStrategy
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.ch2Ps073.diabetless.R
 import com.ch2Ps073.diabetless.databinding.FragmentGlycemicIndexBinding
 import com.ch2Ps073.diabetless.ui.main.MainActivity
 import com.ch2Ps073.diabetless.ui.main.ui.home.HomeFragment
 import com.ch2Ps073.diabetless.utils.ContentUriUtil
 import com.ch2Ps073.diabetless.utils.Result
-import com.ch2Ps073.diabetless.utils.getBitmapFromFile
 import com.ch2Ps073.diabetless.utils.getBitmapFromUri
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 
 
 class GlycemicIndexFragment : Fragment() {
@@ -51,11 +54,8 @@ class GlycemicIndexFragment : Fragment() {
     private var camera: Camera? = null
     private val cameraExecutor = Executors.newSingleThreadExecutor()
 
-    private val recommendationsMealDialog: MealsDetailsDialog by lazy {
-        MealsDetailsDialog(requireContext(), { d ->
-            //startCameraService()
-            d.dismiss()
-        })
+    private val recommendationsMealDialog: RecommendationMealDialog by lazy {
+        RecommendationMealDialog(requireContext())
     }
     private val mealsDialog: MealsDetailsDialog by lazy {
         MealsDetailsDialog(requireContext(), { d ->
@@ -131,13 +131,15 @@ class GlycemicIndexFragment : Fragment() {
     private fun setListeners() {
         binding.apply {
             topAppBar.setNavigationOnClickListener {
-                val transaction = activity?.supportFragmentManager?.beginTransaction()
+                /*val transaction = activity?.supportFragmentManager?.beginTransaction()
                 transaction?.replace(R.id.nav_host_fragment_activity_main, HomeFragment())
                 transaction?.disallowAddToBackStack()
                 transaction?.commit()
+
                 val activity = requireActivity() as MainActivity
                 activity.binding.navView.isVisible = true
-                activity.binding.navView.selectedItemId = R.id.navigation_home
+                activity.binding.navView.selectedItemId = R.id.navigation_home*/
+                findNavController().popBackStack()
             }
 
             btnShutter.setOnClickListener {
@@ -154,7 +156,7 @@ class GlycemicIndexFragment : Fragment() {
         }
     }
 
-    @SuppressLint("UnsafeOptInUsageError")
+    @SuppressLint("UnsafeOptInUsageError", "ClickableViewAccessibility")
     private fun startCameraService() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
         cameraProviderFuture.addListener({
@@ -162,15 +164,15 @@ class GlycemicIndexFragment : Fragment() {
 
             val resolutionSelectorBuilder = ResolutionSelector.Builder()
                 .apply {
-                    setResolutionStrategy(
-                        ResolutionStrategy(
-                            Size(
-                                224,
-                                224
-                            ),
-                            ResolutionStrategy.FALLBACK_RULE_CLOSEST_HIGHER_THEN_LOWER
-                        )
-                    )
+                    /* setResolutionStrategy(
+                         ResolutionStrategy(
+                             Size(
+                                 224,
+                                 224
+                             ),
+                             ResolutionStrategy.FALLBACK_RULE_CLOSEST_HIGHER_THEN_LOWER
+                         )
+                     )*/
                 }
                 .build()
 
@@ -184,6 +186,7 @@ class GlycemicIndexFragment : Fragment() {
 
             imageCapture = ImageCapture.Builder()
                 .setResolutionSelector(resolutionSelectorBuilder)
+                .setCaptureMode(ImageCapture.CAPTURE_MODE_MAXIMIZE_QUALITY)
                 .build()
 
             try {
@@ -195,6 +198,23 @@ class GlycemicIndexFragment : Fragment() {
                     imageCapture,
                     imageAnalysis
                 )
+
+                binding.viewFinder.afterMeasured {
+                    val autoFocusPoint = SurfaceOrientedMeteringPointFactory(1f, 1f)
+                        .createPoint(.5f, .5f)
+                    try {
+                        val autoFocusAction = FocusMeteringAction.Builder(
+                            autoFocusPoint,
+                            FocusMeteringAction.FLAG_AF
+                        ).apply {
+                            //start auto-focusing after 2 seconds
+                            setAutoCancelDuration(30, TimeUnit.MILLISECONDS)
+                        }.build()
+                        camera?.cameraControl?.startFocusAndMetering(autoFocusAction)
+                    } catch (e: CameraInfoUnavailableException) {
+                        Log.d("ERROR", "cannot access camera", e)
+                    }
+                }
 
                 preview?.setSurfaceProvider(binding.viewFinder.surfaceProvider)
             } catch (e: Exception) {
@@ -306,8 +326,9 @@ class GlycemicIndexFragment : Fragment() {
         viewModel.detectedMeal.observe(viewLifecycleOwner) { state ->
             if (state is Result.Success) {
                 binding.progressCircular.visibility = View.GONE
-                mealsDialog.setDetectedMealItem(state.data.first, state.data.second)
+                mealsDialog.setMealItems(state.data.first?.toMutableList(), state.data.second)
                 mealsDialog.showDialog()
+
                 showToast("Object detected")
             } else if (state is Result.Error) {
                 binding.progressCircular.visibility = View.GONE
@@ -320,5 +341,58 @@ class GlycemicIndexFragment : Fragment() {
 
     private fun askPermission() {
         requestRequiredPermission.launch(MainActivity.REQUIRED_REQUIRED_PERMISSION)
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun autoFocusByClick() {
+        binding.viewFinder.afterMeasured {
+            binding.viewFinder.setOnTouchListener { _, event ->
+                return@setOnTouchListener when (event.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        true
+                    }
+
+                    MotionEvent.ACTION_UP -> {
+                        val factory: MeteringPointFactory = SurfaceOrientedMeteringPointFactory(
+                            binding.viewFinder.width.toFloat(),
+                            binding.viewFinder.height.toFloat()
+                        )
+                        val autoFocusPoint = factory.createPoint(event.x, event.y)
+                        try {
+                            camera?.cameraControl?.startFocusAndMetering(
+                                FocusMeteringAction.Builder(
+                                    autoFocusPoint,
+                                    FocusMeteringAction.FLAG_AF
+                                ).apply {
+                                    //focus only when the user tap the preview
+                                    disableAutoCancel()
+                                }.build()
+                            )
+                        } catch (e: CameraInfoUnavailableException) {
+                            Log.d("ERROR", "cannot access camera", e)
+                        }
+                        true
+                    }
+
+                    else -> false // Unhandled event.
+                }
+            }
+        }
+    }
+
+    private inline fun View.afterMeasured(crossinline block: () -> Unit) {
+        if (measuredWidth > 0 && measuredHeight > 0) {
+            block()
+        } else {
+            viewTreeObserver.addOnGlobalLayoutListener(object :
+                ViewTreeObserver.OnGlobalLayoutListener {
+                override fun onGlobalLayout() {
+                    if (measuredWidth > 0 && measuredHeight > 0) {
+                        viewTreeObserver.removeOnGlobalLayoutListener(this)
+                        block()
+                    }
+                }
+            })
+        }
     }
 }

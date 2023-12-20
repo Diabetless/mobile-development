@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.ch2Ps073.diabetless.R
 import com.ch2Ps073.diabetless.ui.ViewModelFactory
 import com.ch2Ps073.diabetless.ui.main.MainActivity
-import com.ch2Ps073.diabetless.ui.main.MainViewModel
 import com.ch2Ps073.diabetless.ui.welcome.WelcomePage
 
 class SplashScreen : AppCompatActivity() {

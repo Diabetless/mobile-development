@@ -1,7 +1,7 @@
 package com.ch2Ps073.diabetless.data.local.user.pref
 
 import androidx.lifecycle.liveData
-import com.ch2Ps073.diabetless.data.remote.ApiService
+import com.ch2Ps073.diabetless.data.remote.retrofit.ApiService
 import kotlinx.coroutines.flow.Flow
 import com.ch2Ps073.diabetless.utils.Result
 

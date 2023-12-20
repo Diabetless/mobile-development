@@ -1,10 +1,10 @@
 package com.ch2Ps073.diabetless.ui.welcome.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.ch2Ps073.diabetless.R
 
 class FifthFragment : Fragment() {

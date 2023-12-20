@@ -5,27 +5,22 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ch2Ps073.diabetless.data.remote.ApiConfig
-import com.ch2Ps073.diabetless.data.remote.ApiService
 import com.ch2Ps073.diabetless.data.remote.response.DetectedMealItem
-import com.ch2Ps073.diabetless.data.remote.response.DetectedMealResponse
+import com.ch2Ps073.diabetless.data.remote.retrofit.ApiService
 import com.ch2Ps073.diabetless.utils.Result
 import com.ch2Ps073.diabetless.utils.SingleLiveData
-import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
-import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.HttpException
-import retrofit2.Response
 import java.io.File
 
 
 class GlycemicViewModel : ViewModel() {
-    private val _detectedMeal = SingleLiveData<Result<Pair<DetectedMealItem?, Bitmap>>>()
+    private val _detectedMeal = SingleLiveData<Result<Pair<List<DetectedMealItem>?, Bitmap>>>()
 
-    val detectedMeal: LiveData<Result<Pair<DetectedMealItem?, Bitmap>>?>
+    val detectedMeal: LiveData<Result<Pair<List<DetectedMealItem>?, Bitmap>>?>
         get() = _detectedMeal
 
     private val apiService: ApiService = ApiConfig.getApiService()
@@ -48,12 +43,14 @@ class GlycemicViewModel : ViewModel() {
                 val response = apiService.getDetectedMeals(body)
                 if (response.result != null) {
                     val result = response.result
-                    if (result.isNotEmpty() && result.first() != null) {
-                        val mealItem = result.first()
-                        mealItem?.nutritionFact?.glLevel = glLevel(mealItem?.nutritionFact?.gl ?: 0)
-                        mealItem?.nutritionFact?.giLevel = glLevel(mealItem?.nutritionFact?.gi ?: 0)
+                    if (result.isNotEmpty()) {
+                        val items = result.map {
+                            it?.nutritionFact?.glLevel = glLevel(it?.nutritionFact?.gl ?: 0)
+                            it?.nutritionFact?.giLevel = giLevel(it?.nutritionFact?.gi ?: 0)
+                            it!!
+                        }.toList()
 
-                        _detectedMeal.value = Result.Success(Pair(mealItem, imageBitmap))
+                        _detectedMeal.value = Result.Success(Pair(items, imageBitmap))
                     } else {
                         // determine analysis is empty
                         _detectedMeal.value = Result.Success(Pair(null, imageBitmap))
@@ -79,7 +76,7 @@ class GlycemicViewModel : ViewModel() {
         } else if (gl.toDouble() >= 20) {
             "High"
         } else {
-            "Unknown"
+            "High"
         }
     }
 
@@ -91,7 +88,7 @@ class GlycemicViewModel : ViewModel() {
         } else if (gi.toDouble() >= 70) {
             "High"
         } else {
-            "Unknown"
+            "High"
         }
     }
 }

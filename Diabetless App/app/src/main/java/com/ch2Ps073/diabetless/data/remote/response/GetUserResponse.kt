@@ -26,6 +26,9 @@ data class DetailUser(
     val username: String? = null,
 
     @field:SerializedName("profilePicture")
-    val profilePicture: String? = null
+    val profilePicture: String? = null,
+
+    @field:SerializedName("birthday")
+    val birthday: String? = null
 
 )

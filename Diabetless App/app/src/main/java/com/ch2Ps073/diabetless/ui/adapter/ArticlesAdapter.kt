@@ -1,4 +1,4 @@
-package com.CH2PS073.diabetless.ui.adapter
+package com.ch2Ps073.diabetless.ui.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

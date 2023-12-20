@@ -5,13 +5,11 @@ import android.os.Build
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ch2Ps073.diabetless.databinding.ActivityWelcomePageBinding
 import com.ch2Ps073.diabetless.ui.adapter.WelcomePagerAdapter
 import com.ch2Ps073.diabetless.ui.login.LoginActivity
 import com.ch2Ps073.diabetless.ui.register.SignupActivity
-import com.google.android.material.tabs.TabLayoutMediator
 
 class WelcomePage : AppCompatActivity() {
 

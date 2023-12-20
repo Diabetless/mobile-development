@@ -1,5 +1,6 @@
 package com.ch2Ps073.diabetless.data.remote.response
 
+import android.graphics.Bitmap
 import com.google.gson.annotations.SerializedName
 
 data class DetectedMealResponse(
@@ -23,6 +24,8 @@ abstract class BaseDetectedMeal {
     abstract val tags: List<String>?
 
     abstract val serving: String?
+
+    var imageBitmap: Bitmap? = null
 }
 
 data class DetectedMealItem(
@@ -42,8 +45,22 @@ data class DetectedMealItem(
     override val serving: String? = null,
 
     @field:SerializedName("recommendation")
-    val recommendations: List<RecommendationsMeal>? = null
-) : BaseDetectedMeal()
+    val recommendations: List<RecommendationsMeal>? = null,
+) : BaseDetectedMeal() {
+    companion object {
+        val dummy = arrayOf(
+            DetectedMealItem(
+                name = "test 1"
+            ),
+            DetectedMealItem(
+                name = "test 2"
+            ),
+            DetectedMealItem(
+                name = "test 3"
+            )
+        )
+    }
+}
 
 
 data class NutritionFact(

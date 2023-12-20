@@ -10,19 +10,17 @@ import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.CH2PS073.diabetless.ui.adapter.MealsAdapter
-import com.CH2PS073.diabetless.ui.adapter.MealsFavoriteAdapter
 import com.ch2Ps073.diabetless.data.local.db.RoomRepository
 import com.ch2Ps073.diabetless.data.remote.response.Meal
 import com.ch2Ps073.diabetless.databinding.ActivityFavoritesBinding
+import com.ch2Ps073.diabetless.ui.adapter.MealsFavoriteAdapter
 import com.ch2Ps073.diabetless.ui.main.ui.mealPlanner.mealDetail.MealDetailActivity
-import com.ch2Ps073.diabetless.ui.main.ui.mealPlanner.mealDetail.MealDetailViewModelFactory
 
 class FavoritesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFavoritesBinding
     private val mealsAdapter = MealsFavoriteAdapter()
 
-    val favoritesViewModel by viewModels<FavoritesViewModel> {
+    private val favoritesViewModel by viewModels<FavoritesViewModel> {
         FavoritesViewModelFactory(
             RoomRepository(this.application)
         )

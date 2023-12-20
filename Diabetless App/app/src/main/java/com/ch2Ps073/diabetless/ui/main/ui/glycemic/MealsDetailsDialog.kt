@@ -4,24 +4,16 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.Target
+import androidx.viewpager2.widget.ViewPager2
 import com.ch2Ps073.diabetless.R
 import com.ch2Ps073.diabetless.data.remote.response.BaseDetectedMeal
 import com.ch2Ps073.diabetless.data.remote.response.DetectedMealItem
 import com.ch2Ps073.diabetless.data.remote.response.RecommendationsMeal
 import com.ch2Ps073.diabetless.databinding.BottomSheetGlycemixCameraLayoutBinding
-import com.ch2Ps073.diabetless.ui.adapter.BaseRecyclerViewAdapter
-import com.ch2Ps073.diabetless.utils.setImageFromUrl
+import com.ch2Ps073.diabetless.databinding.ItemGlycemicIndexBinding
+import com.ch2Ps073.diabetless.ui.adapter.BaseRecyclerViewBindingAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
@@ -31,7 +23,10 @@ class MealsDetailsDialog(
     private val onClickRecommendationsMeal: ((RecommendationsMeal) -> Unit)? = null,
 ) {
 
-    private var binding: BottomSheetGlycemixCameraLayoutBinding =
+    private var mealItems: MutableList<DetectedMealItem> = mutableListOf()
+    private var imageCaptureBitmap: Bitmap? = null
+
+    private var dialogBinding: BottomSheetGlycemixCameraLayoutBinding =
         BottomSheetGlycemixCameraLayoutBinding.inflate(LayoutInflater.from(context)).apply {
             lyResult.visibility = View.VISIBLE
             lyNoResult.visibility = View.GONE
@@ -39,142 +34,85 @@ class MealsDetailsDialog(
 
     private var glycemixBottomMenu: BottomSheetDialog =
         BottomSheetDialog(context, R.style.SheetDialog).apply {
-            setContentView(binding.root)
+            setContentView(dialogBinding.root)
             setOnDismissListener { d ->
+                dialogBinding.root.invalidate()
                 onDismiss.invoke(d)
             }
         }
 
-    private val recommendationAdapter by lazy {
-        object : BaseRecyclerViewAdapter<RecommendationsMeal>(
-            R.layout.item_recommendation,
-            bind = { item, holder, _, _ ->
-                with(holder.itemView) {
-                    findViewById<ImageView>(R.id.img_food).setImageFromUrl(item.imageUrl ?: "")
-                    findViewById<TextView>(R.id.tv_name).text = item.name
-
-                    findViewById<View>(R.id.ly_recommendation).setOnClickListener {
-                        onClickRecommendationsMeal?.invoke(item)
-
-                        //onClickRecommendationItem(item)
-                    }
-                }
+    private val viewPagerAdapter by lazy {
+        object : BaseRecyclerViewBindingAdapter<ItemGlycemicIndexBinding, BaseDetectedMeal>(
+            ItemGlycemicIndexBinding::inflate,
+            bind = { item, _, _, binding ->
+                binding.setupRvRecommendation(onClickRecommendationsMeal)
+                binding.setComponents(context, item, imageCaptureBitmap)
             }
         ) {}
     }
 
     init {
-        rvCommendation()
-    }
 
-    private fun rvCommendation() {
-        binding.rvRecommendation.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = recommendationAdapter
+        dialogBinding.imgPrev.setOnClickListener {
+            if (dialogBinding.viewPager2.currentItem > 0) {
+                dialogBinding.viewPager2.currentItem = dialogBinding.viewPager2.currentItem - 1
+            }
         }
+        dialogBinding.imgNext.setOnClickListener {
+            if (dialogBinding.viewPager2.currentItem < dialogBinding.viewPager2.adapter!!.itemCount) {
+                dialogBinding.viewPager2.currentItem = dialogBinding.viewPager2.currentItem + 1
+            }
+        }
+
+        dialogBinding.viewPager2.adapter = viewPagerAdapter
+        dialogBinding.viewPager2.isUserInputEnabled = false
+        dialogBinding.viewPager2.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
+            override fun onPageScrollStateChanged(state: Int) {
+                super.onPageScrollStateChanged(state)
+            }
+
+            @SuppressLint("SetTextI18n")
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                dialogBinding.tvCountMeal.text = "${position + 1} / ${mealItems.size}"
+            }
+
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+            }
+        })
     }
 
-    @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
-    private fun componentsSetup(detectedMealItem: BaseDetectedMeal?, bitmap: Bitmap? = null) {
-        if (detectedMealItem == null) {
-            binding.lyResult.visibility = View.GONE
-            binding.lyNoResult.visibility = View.VISIBLE
+    @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
+    fun setMealItems(mealItems: MutableList<DetectedMealItem>?, imageCaptureBitmap: Bitmap?) {
+        this.imageCaptureBitmap = imageCaptureBitmap
 
-            binding.imgCaptureNoResult.setImageBitmap(bitmap)
+        if (!mealItems.isNullOrEmpty()) {
+            dialogBinding.lyCount.visibility = if (mealItems.size > 1) View.VISIBLE else View.GONE
+            dialogBinding.lyResult.visibility = View.VISIBLE
+            dialogBinding.lyNoResult.visibility = View.GONE
+
+            this.mealItems = mealItems
+            viewPagerAdapter.submitList(mealItems as MutableList<BaseDetectedMeal>)
+            viewPagerAdapter.notifyDataSetChanged()
+
+            dialogBinding.tvCountMeal.text = "1 / ${mealItems.size}"
         } else {
-            binding.lyResult.visibility = View.VISIBLE
-            binding.lyNoResult.visibility = View.GONE
+            dialogBinding.lyCount.visibility = View.GONE
+            dialogBinding.lyResult.visibility = View.GONE
+            dialogBinding.lyNoResult.visibility = View.VISIBLE
 
-            binding.tvDetected.text =
-                (detectedMealItem.name ?: "").replaceFirstChar { it.uppercase() }
-            binding.tvGi.text = (detectedMealItem.nutritionFact?.gi ?: "").toString()
-            binding.tvGl.text = (detectedMealItem.nutritionFact?.gl ?: "").toString()
-            binding.tvGiFlag.text =
-                (detectedMealItem.nutritionFact?.giLevel ?: "").replaceFirstChar { it.uppercase() }
-            binding.tvGlFlag.text =
-                (detectedMealItem.nutritionFact?.glLevel ?: "").replaceFirstChar { it.uppercase() }
-            binding.tvFact.text =
-                "Nutrition Facts (${(detectedMealItem.serving ?: "")})"
-            binding.tvCal.text =
-                (detectedMealItem.nutritionFact?.calories ?: "").toString()
-            binding.tvCarb.text =
-                (detectedMealItem.nutritionFact?.carbohydrates ?: "").toString()
-            binding.tvProteins.text =
-                (detectedMealItem.nutritionFact?.proteins ?: "").toString()
-            binding.tvFats.text = (detectedMealItem.nutritionFact?.fats ?: "").toString()
-
-
-            when (val background: Drawable = binding.lyGiLevel.background) {
-                is GradientDrawable -> {
-                    val color = ContextCompat.getColor(
-                        context,
-                        if (detectedMealItem.nutritionFact!!.giLevel!!.equals(
-                                "low",
-                                ignoreCase = true
-                            )
-                        ) R.color.green
-                        else if (detectedMealItem.nutritionFact!!.giLevel!!.equals(
-                                "moderate",
-                                ignoreCase = true
-                            )
-                        )
-                            R.color.yellow
-                        else R.color.red
-                    )
-
-                    background.setStroke(30, color)
-                }
-            }
-
-            when (val background: Drawable = binding.lyGlLevel.background) {
-                is GradientDrawable -> {
-                    val color = ContextCompat.getColor(
-                        context,
-                        if (detectedMealItem.nutritionFact!!.glLevel!!.equals(
-                                "low",
-                                ignoreCase = true
-                            )
-                        ) R.color.green
-                        else if (detectedMealItem.nutritionFact!!.glLevel!!.equals(
-                                "moderate",
-                                ignoreCase = true
-                            )
-                        )
-                            R.color.yellow
-                        else R.color.red
-                    )
-
-                    background.setStroke(30, color)
-                }
-            }
-
-            binding.lyRecommendation.visibility =
-                if (detectedMealItem is DetectedMealItem) View.VISIBLE else View.GONE
-
-            if (detectedMealItem is DetectedMealItem) {
-                binding.imgCapture.setImageBitmap(bitmap)
-                binding.rvRecommendation.visibility =
-                    if (detectedMealItem.recommendations.isNullOrEmpty()) View.GONE else View.VISIBLE
-
-                binding.tvNoItemRecommendation.visibility =
-                    if (detectedMealItem.recommendations.isNullOrEmpty()) View.VISIBLE else View.GONE
-
-                if (!detectedMealItem.recommendations.isNullOrEmpty()) {
-                    recommendationAdapter.submitList(detectedMealItem.recommendations)
-                    recommendationAdapter.notifyDataSetChanged()
-                }
-            } else if (detectedMealItem is RecommendationsMeal) {
-                binding.imgCapture.setImageFromUrl(detectedMealItem.imageUrl ?: "")
-            }
+            dialogBinding.imgCaptureNoResult.setImageBitmap(imageCaptureBitmap)
         }
     }
 
     fun setDetectedMealItem(mealItem: DetectedMealItem?, image: Bitmap) {
-        componentsSetup(mealItem, image)
-    }
-
-    fun setRecommendationItem(recommendationsMeal: RecommendationsMeal) {
-        componentsSetup(recommendationsMeal)
+        //componentsSetup(mealItem, image)
     }
 
     fun showDialog() {

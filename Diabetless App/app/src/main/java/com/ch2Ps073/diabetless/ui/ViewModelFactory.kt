@@ -6,9 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.ch2Ps073.diabetless.data.local.user.di.Injection
 import com.ch2Ps073.diabetless.data.local.user.pref.UserRepository
 import com.ch2Ps073.diabetless.ui.articles.ArticlesViewModel
-import com.ch2Ps073.diabetless.ui.login.LoginViewModel
 import com.ch2Ps073.diabetless.ui.main.MainViewModel
-import com.ch2Ps073.diabetless.ui.main.bottomSheetMenu.profile.ProfileSettingViewModel
 import com.ch2Ps073.diabetless.ui.main.ui.mealPlanner.MealPlanIndexViewModel
 import com.ch2Ps073.diabetless.ui.splashscreen.SplashScreenViewModel
 
@@ -18,10 +16,6 @@ class ViewModelFactory(private val repository: UserRepository) :
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
-            modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
-                LoginViewModel(repository) as T
-            }
-
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
                 MainViewModel(repository) as T
             }
@@ -30,14 +24,9 @@ class ViewModelFactory(private val repository: UserRepository) :
                 ArticlesViewModel(repository) as T
             }
 
-            modelClass.isAssignableFrom(ProfileSettingViewModel::class.java) -> {
-                ProfileSettingViewModel() as T
-            }
-
             modelClass.isAssignableFrom(MealPlanIndexViewModel::class.java) -> {
                 MealPlanIndexViewModel(repository) as T
             }
-
             modelClass.isAssignableFrom(SplashScreenViewModel::class.java) -> {
                 SplashScreenViewModel(repository) as T
             }

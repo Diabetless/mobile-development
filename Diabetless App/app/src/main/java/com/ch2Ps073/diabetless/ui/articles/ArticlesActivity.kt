@@ -13,10 +13,10 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ch2Ps073.diabetless.data.remote.response.ArticleItem
-import com.CH2PS073.diabetless.ui.adapter.ArticlesAdapter
 import com.ch2Ps073.diabetless.ui.detail.DetailActivity
 import com.ch2Ps073.diabetless.databinding.ActivityArticlesBinding
 import com.ch2Ps073.diabetless.ui.ViewModelFactory
+import com.ch2Ps073.diabetless.ui.adapter.ArticlesAdapter
 
 class ArticlesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityArticlesBinding

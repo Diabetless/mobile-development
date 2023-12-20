@@ -13,12 +13,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.CH2PS073.diabetless.ui.adapter.MealsAdapter
-import com.ch2Ps073.diabetless.R
 import com.ch2Ps073.diabetless.data.remote.response.MealItem
 import com.ch2Ps073.diabetless.databinding.FragmentMealPlannerIndexBinding
 import com.ch2Ps073.diabetless.ui.ViewModelFactory
-import com.ch2Ps073.diabetless.ui.main.bottomSheetMenu.BottomSheetMenuFragment
+import com.ch2Ps073.diabetless.ui.adapter.MealsAdapter
 import com.ch2Ps073.diabetless.ui.main.ui.mealPlanner.favorites.FavoritesActivity
 import com.ch2Ps073.diabetless.ui.main.ui.mealPlanner.mealCart.MealCartActivity
 import com.ch2Ps073.diabetless.ui.main.ui.mealPlanner.mealDetail.MealDetailActivity
@@ -45,17 +43,6 @@ class MealPlanFragment : Fragment() {
         val root: View = binding.root
 
         (activity as AppCompatActivity?)?.supportActionBar?.hide()
-
-        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.menu -> {
-                    BottomSheetMenuFragment().show(childFragmentManager, "bottomSheetMenu")
-                    true
-                }
-
-                else -> false
-            }
-        }
 
         observeMeals()
         observeLoading()
