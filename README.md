@@ -4,6 +4,14 @@
 "Diabetless" is a comprehensive mobile application developed using Kotlin, offering a range of features to support individuals managing diabetes. The app begins with a secure and user-friendly Login and Register system. Users can access a dedicated health section that includes articles related to diabetes, with the option to mark favorites for future reference. The Meal Planner feature provides curated recipes, allowing users to plan and organize their meals effectively, with the ability to save their favorite recipes.
 A standout feature of "Diabetless" is the Glycemic Index Camera, which enables users to scan food items. The app then displays nutritional information, highlighting suitable options for individuals with diabetes. Additionally, the feature offers personalized recommendations for diabetes-friendly foods. The Health section of the app allows users to input and track their BMI and blood sugar levels, providing graphical representations for easy monitoring. This visual representation aims to empower users to observe and manage their health journey effectively. "Diabetless" leverages popular tools and libraries like Retrofit for API integration, CameraX for image capture, and Room for local data storage to ensure a seamless and efficient user experience.
 
+## Screenshots
+<img src="Images/SplashScreen.jpg" width="200"> <img src="Images/WelcomePage.jpg" width="200"> <img src="Images/Login.jpg" width="200"> <img src="Images/SignUp.jpg" width="200">
+
+<img src="Images/Home.jpg" width="200"> <img src="Images/Article.jpg" width="200"> <img src="Images/Camera.jpg" width="200"> <img src="Images/Result.jpg" width="200">
+
+<img src="Images/MealPlanner.jpg" width="200"> 
+
+
 ## Development Roadmap
 1. Retrofit
 2. CameraX
