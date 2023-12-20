@@ -9,7 +9,7 @@ A standout feature of "Diabetless" is the Glycemic Index Camera, which enables u
 
 <img src="Images/Home.jpg" width="200"> <img src="Images/Article.jpg" width="200"> <img src="Images/Camera.jpg" width="200"> <img src="Images/Result.jpg" width="200">
 
-<img src="Images/MealPlanner.jpg" width="200"> 
+<img src="Images/MealPlanner.jpg" width="200"> <img src="Images/Meals.jpg" width="200"> 
 
 
 ## Development Roadmap
