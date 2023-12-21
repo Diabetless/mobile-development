@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_light"
+    style="@style/ScreenBackgroundFragment"
     tools:context=".ui.main.ui.health.bloodSugar.BloodSugarActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -50,7 +50,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            style="@style/CardBackgroundFragment">
 
             <NumberPicker
                 android:id="@+id/numberPickmm"

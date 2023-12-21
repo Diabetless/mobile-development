@@ -57,6 +57,13 @@ class ProfileFragment : Fragment() {
         mainViewModel.getSession().observe(requireActivity()) { user ->
             viewModel.getDetailUser(user.token)
 
+            viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+                if (isLoading) {
+                    binding.progressBar.visibility = View.VISIBLE
+                } else {
+                    binding.progressBar.visibility = View.GONE
+                }
+            }
             viewModel.users.observe(viewLifecycleOwner) { detail ->
                 setDetailUser(detail)
             }
@@ -70,11 +77,6 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setDetailUser(detail: DetailUser) {
-        if (!isAdded) {
-            // Fragment is not attached, do nothing
-            return
-        }
-
         binding.nameEditTextLayout.text = detail.fullName
         binding.emailEditTextLayout.text = detail.email
         binding.usernameEditTextLayout.text = detail.username

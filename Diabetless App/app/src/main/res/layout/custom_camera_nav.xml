@@ -17,7 +17,8 @@
         android:layout_marginTop="1dp"
         android:layout_marginRight="1dp"
         android:layout_marginBottom="10dp"
-        android:background="@android:color/white"
+        android:background="?attr/bgSecondary"
+        app:cardBackgroundColor="?attr/bgSecondary"
         app:cardCornerRadius="50dp"
         app:cardElevation="2dp">
 
@@ -44,6 +45,7 @@
                 app:iconGravity="textStart"
                 app:iconPadding="0dp"
                 app:iconSize="30dp"
+                app:iconTint="@color/white"
                 android:outlineAmbientShadowColor="@android:color/transparent"
                 android:outlineSpotShadowColor="@android:color/transparent"/>
 

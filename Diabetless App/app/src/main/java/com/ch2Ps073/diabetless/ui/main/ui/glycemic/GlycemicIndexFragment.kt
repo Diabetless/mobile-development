@@ -30,10 +30,11 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.ch2Ps073.diabetless.R
 import com.ch2Ps073.diabetless.databinding.FragmentGlycemicIndexBinding
+import com.ch2Ps073.diabetless.ui.ViewModelFactory
 import com.ch2Ps073.diabetless.ui.main.MainActivity
+import com.ch2Ps073.diabetless.ui.main.MainViewModel
 import com.ch2Ps073.diabetless.ui.main.ui.home.HomeFragment
 import com.ch2Ps073.diabetless.utils.ContentUriUtil
 import com.ch2Ps073.diabetless.utils.Result
@@ -53,6 +54,7 @@ class GlycemicIndexFragment : Fragment() {
 
     private var camera: Camera? = null
     private val cameraExecutor = Executors.newSingleThreadExecutor()
+    private var authToken: String? = null
 
     private val recommendationsMealDialog: RecommendationMealDialog by lazy {
         RecommendationMealDialog(requireContext())
@@ -77,7 +79,11 @@ class GlycemicIndexFragment : Fragment() {
                 val capturedBitmap = getBitmapFromUri(requireContext(), this)
                 val imageFile = ContentUriUtil.getFilePath(requireContext(), this)
                 if (imageFile != null) {
-                    viewModel.detectMealNutrition(File(imageFile), capturedBitmap!!)
+                    viewModel.detectMealNutrition(
+                        authToken ?: "",
+                        File(imageFile),
+                        capturedBitmap!!
+                    )
                 } else {
                     showToast("Please grant storage permission to use this feature")
                 }
@@ -103,6 +109,10 @@ class GlycemicIndexFragment : Fragment() {
         GlycemicViewModelFactory()
     }
 
+    private val mainViewModel by viewModels<MainViewModel> {
+        ViewModelFactory.getInstance(requireContext())
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -120,6 +130,7 @@ class GlycemicIndexFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
         observeState()
+        observerActivityState()
 
         if (!checkImagePermission()) {
             askPermission()
@@ -131,15 +142,13 @@ class GlycemicIndexFragment : Fragment() {
     private fun setListeners() {
         binding.apply {
             topAppBar.setNavigationOnClickListener {
-                /*val transaction = activity?.supportFragmentManager?.beginTransaction()
+                val transaction = activity?.supportFragmentManager?.beginTransaction()
                 transaction?.replace(R.id.nav_host_fragment_activity_main, HomeFragment())
                 transaction?.disallowAddToBackStack()
                 transaction?.commit()
-
                 val activity = requireActivity() as MainActivity
                 activity.binding.navView.isVisible = true
-                activity.binding.navView.selectedItemId = R.id.navigation_home*/
-                findNavController().popBackStack()
+                activity.binding.navView.selectedItemId = R.id.navigation_home
             }
 
             btnShutter.setOnClickListener {
@@ -266,7 +275,11 @@ class GlycemicIndexFragment : Fragment() {
                      }*/
 
 
-                    viewModel.detectMealNutrition(capturedImageFile, capturedBitmap!!)
+                    viewModel.detectMealNutrition(
+                        authToken ?: "",
+                        capturedImageFile,
+                        capturedBitmap!!
+                    )
                     // stop preview when image capture
                     // preview?.setSurfaceProvider(null)
                 }
@@ -336,6 +349,12 @@ class GlycemicIndexFragment : Fragment() {
             } else {
                 binding.progressCircular.visibility = View.VISIBLE
             }
+        }
+    }
+
+    private fun observerActivityState(){
+        mainViewModel.getSession().observe(viewLifecycleOwner){ state ->
+            authToken = state.token
         }
     }
 

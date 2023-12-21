@@ -3,7 +3,11 @@ package com.ch2Ps073.diabetless.ui.main.bottomSheetMenu.profile
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.view.View
+import android.view.WindowInsets
+import android.view.WindowManager
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
@@ -22,6 +26,7 @@ import com.ch2Ps073.diabetless.utils.uriToFile
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+
 
 class ProfileSettingActivity : AppCompatActivity() {
 
@@ -42,6 +47,7 @@ class ProfileSettingActivity : AppCompatActivity() {
         binding = ActivityProfileSettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
+        setupView()
 
         binding.profileImage.setOnClickListener { startGallery() }
 
@@ -51,19 +57,30 @@ class ProfileSettingActivity : AppCompatActivity() {
 
         mainViewModel.getSession().observe(this) { user ->
             viewModel.getDetailUser(user.token)
+
+            viewModel.isLoading.observe(this) { isLoading ->
+                lifecycleScope.launchWhenStarted {
+                    showLoading(isLoading)
+                }
+            }
+
             viewModel.users.observe(this) { detail ->
                 setDetailUser(detail)
             }
 
             binding.saveChangeButton.setOnClickListener {
+
+                showLoading(true)
+
                 val name = binding.nameEditText.text.toString()
                 val email = binding.emailEditText.text.toString()
                 val username = binding.usernameEditText.text.toString()
                 val dateBirthday = binding.birthdayEditText.text.toString()
 
+                viewModel.editProfile(user.token, name, email, username, dateBirthday)
                 currentImageUri?.let { uri ->
                     val imageFile = uriToFile(uri, this).reduceFileImage()
-                    viewModel.editProfile(user.token, name, email, imageFile, username, dateBirthday)
+                    viewModel.editPhotoProfile(user.token, imageFile)
                 }
             }
         }
@@ -77,17 +94,28 @@ class ProfileSettingActivity : AppCompatActivity() {
         }
     }
 
+
+    private fun setupView() {
+        @Suppress("DEPRECATION")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+        }
+    }
+
     private fun showDatePickerDialog() {
         val calendar = Calendar.getInstance()
 
-        // Create a DatePickerDialog and set the listener
         val datePickerDialog = DatePickerDialog(
             this,
             { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
                 val selectedDate = Calendar.getInstance()
                 selectedDate.set(year, month, dayOfMonth)
 
-                // Format the selected date and set it to the text field
                 val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                 binding.birthdayEditText.setText(dateFormat.format(selectedDate.time))
             },
@@ -96,7 +124,6 @@ class ProfileSettingActivity : AppCompatActivity() {
             calendar.get(Calendar.DAY_OF_MONTH)
         )
 
-        // Show the DatePickerDialog
         datePickerDialog.show()
     }
 
@@ -105,18 +132,19 @@ class ProfileSettingActivity : AppCompatActivity() {
         binding.emailEditText.setText(detail.email)
         binding.usernameEditText.setText(detail.username)
         binding.birthdayEditText.setText(detail.birthday)
-        if (detail.profilePicture == "") {
-            Glide.with(this@ProfileSettingActivity)
-                .load("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png")
-                .circleCrop()
-                .into(binding.profileImage)
-        } else {
-            Glide.with(this@ProfileSettingActivity)
-                .load(detail.profilePicture.toString())
-                .circleCrop()
-                .into(binding.profileImage)
-        }
+        loadProfileImage(detail.profilePicture)
     }
+
+    private fun loadProfileImage(profilePicture: String?) {
+        val imageUrl = profilePicture.takeIf { it?.isNotBlank() == true }
+            ?: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+
+        Glide.with(this@ProfileSettingActivity)
+            .load(imageUrl)
+            .circleCrop()
+            .into(binding.profileImage)
+    }
+
 
     private fun startGallery() {
         launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
@@ -144,5 +172,8 @@ class ProfileSettingActivity : AppCompatActivity() {
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 }

@@ -40,19 +40,19 @@ class BottomSheetMenuFragment : BottomSheetDialogFragment() {
             startActivity(intent)
         }
 
-        binding.notificationSettingBbutton.setOnClickListener {
+        binding.notificationSettingButtonLayout.setOnClickListener {
             showToast("Fitur notification belum tersedia")
         }
 
-        binding.helpCenterButton.setOnClickListener {
+        binding.helpCenterButtonLayout.setOnClickListener {
             showToast("Fitur help center belum tersedia")
         }
 
-        binding.aboutUsButton.setOnClickListener {
+        binding.aboutUsButtonLayout.setOnClickListener {
             showToast("Fitur about us belum tersedia")
         }
 
-        binding.logoutButton.setOnClickListener {
+        binding.logoutButtonLayout.setOnClickListener {
             viewModel.logout()
         }
 

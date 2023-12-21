@@ -1,6 +1,8 @@
 package com.ch2Ps073.diabetless.utils
 
 import android.app.Activity
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Build
 import android.util.DisplayMetrics
 import android.view.WindowInsets
@@ -26,4 +28,9 @@ fun getScreenSize(activity: Activity): ScreenSize {
     activity.windowManager.defaultDisplay.getMetrics(displayMetrics)
 
     return ScreenSize(displayMetrics.heightPixels, displayMetrics.widthPixels)
+}
+
+fun Context.isDarkThemeOn(): Boolean {
+    return resources.configuration.uiMode and
+            Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
 }

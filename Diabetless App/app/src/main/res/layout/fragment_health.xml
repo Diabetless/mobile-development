@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_light"
+    style="@style/ScreenBackgroundFragment"
     tools:context=".ui.main.ui.health.HealthFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -67,6 +67,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/CardBackgroundFragment"
                 android:padding="8dp">
 
                 <TextView
@@ -100,6 +101,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
                     android:text="@string/enter"
+                    android:textColor="@color/white"
                     app:backgroundTint="@color/deepBlue"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -137,6 +139,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/CardBackgroundFragment"
                 android:padding="8dp">
 
                 <TextView
@@ -196,6 +199,7 @@
                     android:fontFamily="@font/poppins_medium"
                     android:text="@string/update"
                     app:backgroundTint="@color/deepBlue"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -231,7 +235,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="@style/CardBackgroundFragment">
 
                 <TextView
                     android:id="@+id/avgChartText"

@@ -23,9 +23,9 @@ class GlycemicViewModel : ViewModel() {
     val detectedMeal: LiveData<Result<Pair<List<DetectedMealItem>?, Bitmap>>?>
         get() = _detectedMeal
 
-    private val apiService: ApiService = ApiConfig.getApiService()
+    private val apiService: ApiService = ApiConfig.getApiServiceByUrl(ApiConfig.URL_DETECTED_MEAL)
 
-    fun detectMealNutrition(imageFile: File, imageBitmap: Bitmap) {
+    fun detectMealNutrition(authToken: String, imageFile: File, imageBitmap: Bitmap) {
         viewModelScope.launch {
             _detectedMeal.value = Result.Loading
 
@@ -40,7 +40,7 @@ class GlycemicViewModel : ViewModel() {
                 val body =
                     MultipartBody.Part.createFormData("image", imageFile.name, imageRequestBody)
 
-                val response = apiService.getDetectedMeals(body)
+                val response = apiService.getDetectedMeals(authToken, body)
                 if (response.result != null) {
                     val result = response.result
                     if (result.isNotEmpty()) {

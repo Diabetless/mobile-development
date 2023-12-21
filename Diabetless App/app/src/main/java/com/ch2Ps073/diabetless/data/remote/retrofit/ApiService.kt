@@ -61,45 +61,47 @@ interface ApiService {
     ): MealDetailResponse
 
     @FormUrlEncoded
-    @PUT("/users/edit-profile")
+    @PUT("users/edit-profile")
     suspend fun updateUser(
         @Header("Authorization") token: String,
         @Field("fullName") fullName: String,
-        @Field("username") username: String,
+        @Field("username") username : String,
         @Field("email") email: String,
-        @Field("birthday") birthday: String,
+        @Field("birthday") birthday: String
     ): FileUploadResponse
 
     @Multipart
-    @PUT("/users/profile-picture")
+    @PUT("users/profile-picture")
     suspend fun updateUserPhotoP(
         @Header("Authorization") token: String,
         @Part image: MultipartBody.Part,
     ): FileUploadResponse
 
     @FormUrlEncoded
-    @POST("/users/blood-sugar")
+    @POST("users/blood-sugar")
     suspend fun setBloodSL(
         @Header("Authorization") token: String,
         @Field("bloodSugarLevel") bloodSugarLevel: Int,
     ): FileUploadResponse
 
     @FormUrlEncoded
-    @POST("/users/bmi")
+    @POST("users/bmi")
     suspend fun setBody(
         @Header("Authorization") token: String,
         @Field("height") height: Int,
         @Field("weight") weight: Int,
     ): FileUploadResponse
 
-    @GET("/users/health")
+    @GET("users/health")
     fun getHealth(
         @Header("Authorization") token: String
     ): Call<HealthUserResponse>
 
     @Multipart
-    @POST("meals/detect-food")
+    //@POST("meals/detect-food")
+    @POST("detect-food")
     suspend fun getDetectedMeals(
+        @Header("Authorization") token: String,
         @Part image: MultipartBody.Part
     ) : DetectedMealResponse
 }

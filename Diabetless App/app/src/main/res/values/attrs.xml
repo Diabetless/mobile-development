@@ -3,4 +3,12 @@
         <attr name="fullscreenBackgroundColor" format="color" />
         <attr name="fullscreenTextColor" format="color" />
     </declare-styleable>
+
+    <attr name="bottomNavBgColor" format="reference" />
+    <attr name="bottomNavItemColorSelected" format="reference" />
+    <attr name="bottomNavItemColorUnselected" format="reference" />
+    <attr name="bgPrimary" format="reference" />
+    <attr name="bgSecondary" format="reference" />
+    <attr name="textPrimary" format="reference" />
+
 </resources>

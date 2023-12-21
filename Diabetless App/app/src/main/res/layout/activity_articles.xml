@@ -32,7 +32,8 @@
                     android:layout_height="wrap_content"
                     android:iconifiedByDefault="false"
                     android:queryBackground="@android:color/transparent"
-                    android:queryHint="Search Article" />
+                    android:queryHint="Search Article"
+                    style="@style/SearchView"/>
 
             </androidx.cardview.widget.CardView>
 

@@ -20,7 +20,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rice"
-                android:textColor="@color/black"
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
@@ -64,7 +63,6 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Glycemix Index"
-                        android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -98,7 +96,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="90.0"
-                            android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -107,7 +104,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="(High)"
-                            android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -129,7 +125,6 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Glycemix Load"
-                        android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -164,7 +159,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0.7"
-                            android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -173,7 +167,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="(High)"
-                            android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
@@ -190,7 +183,6 @@
                 android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:text="Nutrition Facts (500 g)"
-                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -206,10 +198,10 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/background_stroke_black"
+                    style="@style/TableRow"
                     android:padding="6dp"
                     android:text="Calories (kcal)"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/textPrimary"
                     android:textSize="14sp" />
 
                 <TextView
@@ -223,7 +215,7 @@
                     android:gravity="center"
                     android:padding="6dp"
                     android:text="135.0"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/textPrimary"
                     android:textSize="14sp" />
 
                 <TextView
@@ -236,7 +228,7 @@
                     android:background="@drawable/background_stroke_black"
                     android:padding="6dp"
                     android:text="Carbohydrates (g)"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/textPrimary"
                     android:textSize="14sp" />
 
                 <TextView
@@ -250,7 +242,7 @@
                     android:gravity="center"
                     android:padding="6dp"
                     android:text="135.0"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/textPrimary"
                     android:textSize="14sp" />
 
                 <TextView
@@ -263,7 +255,7 @@
                     android:background="@drawable/background_stroke_black"
                     android:padding="6dp"
                     android:text="Proteins (g)"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/textPrimary"
                     android:textSize="14sp" />
 
                 <TextView
@@ -277,7 +269,7 @@
                     android:gravity="center"
                     android:padding="6dp"
                     android:text="18.5"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/textPrimary"
                     android:textSize="14sp" />
 
                 <TextView
@@ -290,7 +282,7 @@
                     android:background="@drawable/background_stroke_black"
                     android:padding="6dp"
                     android:text="Fats (g)"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/textPrimary"
                     android:textSize="14sp" />
 
                 <TextView
@@ -304,7 +296,7 @@
                     android:gravity="center"
                     android:padding="6dp"
                     android:text="3.5"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/textPrimary"
                     android:textSize="14sp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -325,7 +317,6 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="Healthier Recommendation"
-                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 

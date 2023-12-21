@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.ch2Ps073.diabetless.R
 import com.ch2Ps073.diabetless.data.remote.response.ArticleItem
 import com.ch2Ps073.diabetless.databinding.ItemArticleCarouselBinding
 import com.ch2Ps073.diabetless.ui.detail.DetailActivity
@@ -22,6 +23,7 @@ class CarouselAdapter : RecyclerView.Adapter<CarouselAdapter.ListViewHolder>() {
             Glide.with(binding.root.context)
                 .load(item.imageUrl)
                 .into(binding.imageCarousel)
+            binding.carouselConstraint.setBackgroundResource(R.drawable.gradient_background)
         }
     }
 

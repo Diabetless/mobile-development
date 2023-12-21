@@ -21,7 +21,7 @@
     <string name="signup_text_welcome">"Create a new account to continue. "</string>
     <string name="singup_text2">Already have an account?</string>
     <string name="username">Username</string>
-    <string name="confirm_password">Confirm Password</string>
+    <string name="confirm_password">Confirm New Password</string>
     <string name="agree_policy"><![CDATA[I agree to the Terms & Condition and Privacy Policy]]></string>
     <string name="welcome">Welcome to Diabetless</string>
     <string name="desc">Empower Your Health with Diabetless: Your Ultimate Diabetless Management Companion</string>

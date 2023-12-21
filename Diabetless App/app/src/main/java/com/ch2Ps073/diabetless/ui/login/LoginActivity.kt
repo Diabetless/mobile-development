@@ -10,22 +10,13 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.ch2Ps073.diabetless.R
-import com.ch2Ps073.diabetless.data.local.user.pref.UserModel
-import com.ch2Ps073.diabetless.data.remote.ApiConfig
-import com.ch2Ps073.diabetless.data.remote.response.RegisterResponse
 import com.ch2Ps073.diabetless.databinding.ActivityLoginBinding
-import com.ch2Ps073.diabetless.ui.ViewModelFactory
 import com.ch2Ps073.diabetless.ui.customView.CustomLoginButton
 import com.ch2Ps073.diabetless.ui.customView.PasswordEditText
-import com.ch2Ps073.diabetless.ui.main.MainActivity
 import com.ch2Ps073.diabetless.ui.register.SignupActivity
-import com.google.gson.Gson
-import kotlinx.coroutines.launch
-import retrofit2.HttpException
 
 
 class LoginActivity : AppCompatActivity() {
@@ -45,6 +36,7 @@ class LoginActivity : AppCompatActivity() {
         myButton = findViewById(R.id.loginButton)
         myEditText = findViewById(R.id.passwordEditText)
 
+        supportActionBar?.hide()
         setupView()
         setupAction()
 
