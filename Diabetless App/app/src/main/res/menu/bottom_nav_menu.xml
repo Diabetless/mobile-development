@@ -1,25 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
-
-    <item
-        android:id="@+id/navigation_glycemic"
-        android:icon="@drawable/ic_baseline_camera_alt_24"
-        android:title="@string/title_camera" />
+        android:icon="@drawable/ic_home"
+        android:title="@string/title_home"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/navigation_meal_planner"
-        android:icon="@drawable/ic_baseline_rice_bowl_24"
-        android:title="@string/title_meal" />
+        android:icon="@drawable/ic_glycemic"
+        android:title="Meal"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/navigation_glycemic"
+        android:title="Camera" />
 
     <item
         android:id="@+id/navigation_health"
-        android:icon="@drawable/ic_baseline_monitor_heart_24"
+        android:icon="@drawable/ic_health"
         android:title="@string/title_health"
-        />
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/profile"
+        app:showAsAction="always" />
 
 </menu>

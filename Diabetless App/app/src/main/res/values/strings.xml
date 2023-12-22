@@ -100,5 +100,8 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="save">Save</string>
+    <string name="birthday">Birthday</string>
+    <string name="birthdaynull">Birthday is not set!</string>
+    <string name="edit_profile">Edit Profile</string>
 
 </resources>

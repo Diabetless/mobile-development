@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_light"
+    style="@style/ScreenBackgroundFragment"
     tools:context=".ui.main.ui.mealPlanner.MealPlanFragment">
 
     <androidx.cardview.widget.CardView
@@ -40,7 +40,8 @@
                         android:layout_height="wrap_content"
                         android:iconifiedByDefault="false"
                         android:queryBackground="@android:color/transparent"
-                        android:queryHint="Search recipe" />
+                        android:queryHint="Search recipe"
+                        style="@style/SearchView"/>
 
                 </androidx.cardview.widget.CardView>
 
@@ -51,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="6dp"
-                android:backgroundTint="@android:color/holo_red_light"
+                android:backgroundTint="@color/pink_light"
                 android:src="@drawable/ic_favorite_fill"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

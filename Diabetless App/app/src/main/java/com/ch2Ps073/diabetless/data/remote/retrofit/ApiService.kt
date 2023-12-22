@@ -3,6 +3,7 @@ package com.ch2Ps073.diabetless.data.remote.retrofit
 
 import com.ch2Ps073.diabetless.data.remote.response.ArticlesResponse
 import com.ch2Ps073.diabetless.data.remote.response.DetailArticleResponse
+import com.ch2Ps073.diabetless.data.remote.response.DetectedMealResponse
 import com.ch2Ps073.diabetless.data.remote.response.FileUploadResponse
 import com.ch2Ps073.diabetless.data.remote.response.HealthUserResponse
 import com.ch2Ps073.diabetless.data.remote.response.ListUser
@@ -46,6 +47,9 @@ interface ApiService {
     @GET("articles")
     suspend fun getAllArticles(): ArticlesResponse
 
+    @GET("articles")
+    fun getAllArticlesHome(): Call<ArticlesResponse>
+
     @GET("articles/{id}")
     suspend fun getDetailArticle(
         @Path("id") id: String
@@ -60,38 +64,54 @@ interface ApiService {
     ): MealDetailResponse
 
     @FormUrlEncoded
-    @PUT("/users/edit-profile")
+    @PUT("users/edit-profile")
     suspend fun updateUser(
         @Header("Authorization") token: String,
         @Field("fullName") fullName: String,
-        @Field("username") username: String,
-        @Field("email") email: String
+        @Field("username") username : String,
+        @Field("email") email: String,
+        @Field("birthday") birthday: String
     ): FileUploadResponse
 
     @Multipart
-    @PUT("/users/profile-picture")
+    @PUT("users/profile-picture")
     suspend fun updateUserPhotoP(
         @Header("Authorization") token: String,
         @Part image: MultipartBody.Part,
     ): FileUploadResponse
 
     @FormUrlEncoded
-    @POST("/users/blood-sugar")
+    @POST("users/blood-sugar")
     suspend fun setBloodSL(
         @Header("Authorization") token: String,
         @Field("bloodSugarLevel") bloodSugarLevel: Int,
     ): FileUploadResponse
 
     @FormUrlEncoded
-    @POST("/users/bmi")
+    @POST("users/bmi")
     suspend fun setBody(
         @Header("Authorization") token: String,
         @Field("height") height: Int,
         @Field("weight") weight: Int,
     ): FileUploadResponse
 
-    @GET("/users/health")
+    @GET("users/health")
     fun getHealth(
         @Header("Authorization") token: String
     ): Call<HealthUserResponse>
+
+    @Multipart
+    @POST("detect-food")
+    suspend fun getDetectedMeals(
+        @Header("Authorization") token: String,
+        @Part image: MultipartBody.Part
+    ) : DetectedMealResponse
+
+    @FormUrlEncoded
+    @PUT("users/edit-password")
+    suspend fun changePassword (
+        @Header("Authorization") token: String,
+        @Field("oldPassword") oldPassword: String,
+        @Field("newPassword") newPassword : String
+    ) : RegisterResponse
 }

@@ -1,6 +1,9 @@
 package com.ch2Ps073.diabetless.ui.main.ui.health.bloodSugar
 
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowInsets
+import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -26,22 +29,32 @@ class BloodSugarActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.hide()
+        setupView()
 
         val numbermm = binding.numberPickmm
-        numbermm.minValue = 150
-        numbermm.maxValue = 250
-
-        val numberdL = binding.numberPickdL
-        numberdL.minValue = 1
-        numberdL.maxValue = 10
-
+        numbermm.minValue = 1
+        numbermm.maxValue = 1000
 
         binding.saveButton.setOnClickListener {
-            val bloodslValue = numbermm.value/numberdL.value
-
             mainViewModel.getSession().observe(this){
-                viewModel.setBloodSL(it.token, bloodslValue)
+                viewModel.setBloodSL(it.token, numbermm.value)
             }
+        }
+
+        binding.topAppBar.setNavigationOnClickListener {
+            finish()
+        }
+    }
+
+    private fun setupView() {
+        @Suppress("DEPRECATION")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
         }
     }
 }

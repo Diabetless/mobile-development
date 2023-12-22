@@ -31,6 +31,7 @@
             android:fontFamily="@font/poppins_medium"
             android:text="@string/signup_text_welcome"
             android:textSize="16sp"
+            android:textColor="@color/gray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text1" />
 
@@ -52,7 +53,7 @@
                 android:id="@+id/nameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/text_bg_gray"
+                style="@style/EditTextBackground"
                 android:ems="10"
                 android:inputType="text"
                 app:boxBackgroundMode="none" />
@@ -75,7 +76,7 @@
                 android:id="@+id/emailEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/text_bg_gray"
+                style="@style/EditTextBackground"
                 android:ems="10"
                 android:inputType="textEmailAddress"
                 app:boxBackgroundMode="none" />
@@ -98,7 +99,7 @@
                 android:id="@+id/usernameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/text_bg_gray"
+                style="@style/EditTextBackground"
                 android:ems="10"
                 android:inputType="textEmailAddress"
                 app:boxBackgroundMode="none" />
@@ -122,7 +123,7 @@
                 android:id="@+id/passwordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/text_bg_gray"
+                style="@style/EditTextBackground"
                 android:ems="10"
                 android:inputType="textPassword"
                 app:boxBackgroundMode="none" />
@@ -146,7 +147,7 @@
                 android:id="@+id/confirmPasswordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/text_bg_gray"
+                style="@style/EditTextBackground"
                 android:ems="10"
                 android:inputType="textPassword"
                 app:boxBackgroundMode="none" />
@@ -162,6 +163,7 @@
             android:fontFamily="@font/poppins_medium"
             android:text="@string/agree_policy"
             android:textSize="12sp"
+            android:textColor="@color/gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/confirmPasswordEditTextLayout" />
@@ -209,6 +211,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins_medium"
             android:text="@string/singup_text2"
+            android:textColor="@color/gray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/googleLoginButton" />
 
@@ -220,7 +223,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins_medium"
             android:text="@string/login"
-            android:textColor="@color/dark_blue"
+            android:textColor="@color/blueGray"
             app:layout_constraintStart_toEndOf="@+id/singupText"
             app:layout_constraintTop_toBottomOf="@+id/googleLoginButton" />
 

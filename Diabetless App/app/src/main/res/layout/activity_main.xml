@@ -9,7 +9,12 @@
         android:id="@+id/nav_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        style="@style/BottomNavBar"
+        app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
+        app:itemIconTint="@color/nav_selector"
+        app:itemPaddingBottom="7dp"
+        app:itemTextColor="@color/nav_selector"
+        app:labelVisibilityMode="labeled"
         app:itemHorizontalTranslationEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -27,5 +32,22 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/mobile_navigation" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@android:color/transparent"
+        android:elevation="10dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <include
+            android:id="@+id/camera"
+            layout="@layout/custom_camera_nav" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

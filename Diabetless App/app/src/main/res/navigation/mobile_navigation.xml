@@ -12,14 +12,20 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_navigation_home_to_navigation_meal_planner"
-            app:destination="@id/navigation_meal_planner" />
+            app:destination="@id/navigation_meal_planner"
+            app:launchSingleTop="true"/>
         <action
             android:id="@+id/action_navigation_home_to_navigation_glycemic"
-            app:destination="@id/navigation_glycemic" />
+            app:destination="@id/navigation_glycemic"
+            app:launchSingleTop="true"/>
         <action
             android:id="@+id/action_navigation_home_to_navigation_health"
             app:destination="@id/navigation_health"
-            app:launchSingleTop="false" />
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_profile"
+            app:destination="@id/navigation_profile"
+            app:launchSingleTop="true"/>
     </fragment>
 
     <fragment
@@ -40,6 +46,13 @@
         android:id="@+id/navigation_health"
         android:name="com.ch2Ps073.diabetless.ui.main.ui.health.HealthFragment"
         android:label="@string/title_health"
-        tools:layout="@layout/fragment_meal_planner_index" >
+        tools:layout="@layout/fragment_health" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.ch2Ps073.diabetless.ui.main.ui.profile.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" >
     </fragment>
 </navigation>

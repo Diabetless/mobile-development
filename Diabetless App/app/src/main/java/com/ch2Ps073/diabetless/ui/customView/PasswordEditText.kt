@@ -33,7 +33,7 @@ class PasswordEditText : AppCompatEditText, View.OnTouchListener {
             }
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 if (s.toString().length < 8) {
-                    setError("Password tidak boleh kurang dari 8 karakter", null)
+                    setError("Password must not be less than 8 characters", null)
                 } else {
                     error = null
                 }

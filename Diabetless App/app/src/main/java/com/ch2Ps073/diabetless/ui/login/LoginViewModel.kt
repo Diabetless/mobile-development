@@ -1,9 +1,9 @@
 package com.ch2Ps073.diabetless.ui.login
 
 import android.annotation.SuppressLint
-import android.app.ProgressDialog.show
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.LifecycleCoroutineScope
@@ -11,8 +11,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ch2Ps073.diabetless.data.local.user.pref.UserModel
 import com.ch2Ps073.diabetless.data.local.user.pref.UserRepository
-import com.ch2Ps073.diabetless.data.remote.ApiConfig
-import com.ch2Ps073.diabetless.data.remote.response.RegisterResponse
+import com.ch2Ps073.diabetless.data.remote.response.FileUploadResponse
+import com.ch2Ps073.diabetless.data.remote.retrofit.ApiConfig
 import com.ch2Ps073.diabetless.ui.main.MainActivity
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
@@ -46,7 +46,10 @@ class LoginViewModel(private val context: Context,
                     showToast(TOKEN)
                 }
             } catch (e: HttpException) {
-                handleHttpException(e, email, password)
+                val errorBody = e.response()?.errorBody()?.string()
+                val errorResponse = Gson().fromJson(errorBody, FileUploadResponse::class.java)
+                showToast(errorResponse.message)
+                Log.e("LoginViewModel", errorBody ?: "$errorResponse")
             }
         }
     }
@@ -63,19 +66,6 @@ class LoginViewModel(private val context: Context,
                 val intent = Intent(context, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 context.startActivity(intent)
-            }
-            create()
-            show()
-        }
-    }
-
-    private fun handleHttpException(exception: HttpException, email : String, password: String) {
-        val errorBody = exception.response()?.errorBody()?.string()
-        val errorResponse = Gson().fromJson(errorBody, RegisterResponse::class.java)
-        AlertDialog.Builder(context).apply {
-            setTitle("Email atau password anda salah")
-            setMessage("email anda :\"$email\" \npassword anda : \"$password\"\n$errorResponse")
-            setPositiveButton("coba lagi") { _, _ ->
             }
             create()
             show()

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_light"
+    style="@style/ScreenBackgroundFragment"
     tools:context=".ui.main.ui.health.bloodSugar.BloodSugarActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -19,10 +19,7 @@
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:navigationIcon="@drawable/ic_back"
-            app:contentInsetStart="0dp"
-            app:contentInsetLeft="0dp"
-            app:contentInsetStartWithNavigation="0dp"/>
+            app:navigationIcon="@drawable/ic_back" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
@@ -53,20 +50,15 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            style="@style/CardBackgroundFragment">
 
             <NumberPicker
                 android:id="@+id/numberPickmm"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toStartOf="@+id/guidelineHorizontal"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <NumberPicker
-                android:id="@+id/numberPickdL"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@+id/guidelineHorizontal"
+                app:layout_constraintStart_toStartOf="@+id/guidelineHorizontal2"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -76,7 +68,16 @@
                 android:layout_height="64dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintGuide_percent="0.5"
+                app:layout_constraintGuide_percent="0.68"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineHorizontal2"
+                android:layout_width="wrap_content"
+                android:layout_height="64dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintGuide_percent="0.34"
                 app:layout_constraintStart_toStartOf="parent" />
 
 

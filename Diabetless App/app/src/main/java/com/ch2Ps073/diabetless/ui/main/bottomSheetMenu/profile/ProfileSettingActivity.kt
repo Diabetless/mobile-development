@@ -1,30 +1,35 @@
 package com.ch2Ps073.diabetless.ui.main.bottomSheetMenu.profile
 
-import android.Manifest
-import android.content.pm.PackageManager
+import android.app.DatePickerDialog
+import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
+import android.view.View
+import android.view.WindowInsets
+import android.view.WindowManager
+import android.widget.DatePicker
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.ch2Ps073.diabetless.R
 import com.ch2Ps073.diabetless.data.remote.response.DetailUser
 import com.ch2Ps073.diabetless.databinding.ActivityProfileSettingBinding
 import com.ch2Ps073.diabetless.ui.ViewModelFactory
 import com.ch2Ps073.diabetless.ui.main.MainViewModel
-import com.ch2Ps073.diabetless.ui.main.bottomSheetMenu.profile.changePassword.ChangePasswordFragment
-import com.ch2Ps073.diabetless.utils.getImageUri
+import com.ch2Ps073.diabetless.ui.main.bottomSheetMenu.profile.changePassword.ChangePasswordActivity
 import com.ch2Ps073.diabetless.utils.reduceFileImage
 import com.ch2Ps073.diabetless.utils.uriToFile
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+
 
 class ProfileSettingActivity : AppCompatActivity() {
+
     private val mainViewModel by viewModels<MainViewModel> {
         ViewModelFactory.getInstance(this)
     }
@@ -33,26 +38,8 @@ class ProfileSettingActivity : AppCompatActivity() {
         ProfileViewModelFactory.getInstance(this, lifecycleScope)
     }
 
-    private lateinit var binding : ActivityProfileSettingBinding
-
+    private lateinit var binding: ActivityProfileSettingBinding
     private var currentImageUri: Uri? = null
-
-    private val requestPermissionLauncher =
-        registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted: Boolean ->
-            if (isGranted) {
-                Toast.makeText(this, "Permission request granted", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(this, "Permission request denied", Toast.LENGTH_LONG).show()
-            }
-        }
-
-    private fun allPermissionsGranted() =
-        ContextCompat.checkSelfPermission(
-            this,
-            REQUIRED_PERMISSION
-        ) == PackageManager.PERMISSION_GRANTED
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,76 +47,105 @@ class ProfileSettingActivity : AppCompatActivity() {
         binding = ActivityProfileSettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
-
-        if (!allPermissionsGranted()) {
-            requestPermissionLauncher.launch(REQUIRED_PERMISSION)
-        }
+        setupView()
 
         binding.profileImage.setOnClickListener { startGallery() }
+
+        binding.birthdayEditText.setOnClickListener {
+            showDatePickerDialog()
+        }
 
         mainViewModel.getSession().observe(this) { user ->
             viewModel.getDetailUser(user.token)
 
+            viewModel.isLoading.observe(this) { isLoading ->
+                lifecycleScope.launchWhenStarted {
+                    showLoading(isLoading)
+                }
+            }
+
+            viewModel.users.observe(this) { detail ->
+                setDetailUser(detail)
+            }
+
             binding.saveChangeButton.setOnClickListener {
+
                 val name = binding.nameEditText.text.toString()
                 val email = binding.emailEditText.text.toString()
                 val username = binding.usernameEditText.text.toString()
+                val dateBirthday = binding.birthdayEditText.text.toString()
 
+                viewModel.editProfile(user.token, name, email, username, dateBirthday)
                 currentImageUri?.let { uri ->
                     val imageFile = uriToFile(uri, this).reduceFileImage()
-                    Log.d("Image File", "showImage: ${imageFile.path}")
-
-                    viewModel.editProfile(user.token, name, email, imageFile, username)
-
+                    viewModel.editPhotoProfile(user.token, imageFile)
                 }
             }
         }
 
-        viewModel.users.observe(this) { detail ->
-            setDetailUser(detail)
-        }
-
         binding.changePasswordButton.setOnClickListener {
-            val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.profileActivity, ChangePasswordFragment())
-            fragmentTransaction.disallowAddToBackStack()
-            fragmentTransaction.commit()
+            startActivity(Intent(this, ChangePasswordActivity::class.java))
         }
 
+        binding.topAppBar.setNavigationOnClickListener {
+            this@ProfileSettingActivity.onBackPressed()
+        }
+    }
+
+
+    private fun setupView() {
+        @Suppress("DEPRECATION")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+        }
+    }
+
+    private fun showDatePickerDialog() {
+        val calendar = Calendar.getInstance()
+
+        val datePickerDialog = DatePickerDialog(
+            this,
+            { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
+                val selectedDate = Calendar.getInstance()
+                selectedDate.set(year, month, dayOfMonth)
+
+                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                binding.birthdayEditText.setText(dateFormat.format(selectedDate.time))
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+
+        datePickerDialog.show()
     }
 
     private fun setDetailUser(detail: DetailUser) {
         binding.nameEditText.setText(detail.fullName)
         binding.emailEditText.setText(detail.email)
         binding.usernameEditText.setText(detail.username)
-        if (detail.profilePicture == ""){
-            Glide.with(this@ProfileSettingActivity)
-                .load("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png")
-                .circleCrop()
-                .into(binding.profileImage)
-        } else {
-            Glide.with(this@ProfileSettingActivity)
-                .load(detail.profilePicture.toString())
-                .circleCrop()
-                .into(binding.profileImage)
-        }
+        binding.birthdayEditText.setText(detail.birthday)
+        loadProfileImage(detail.profilePicture)
     }
+
+    private fun loadProfileImage(profilePicture: String?) {
+        val imageUrl = profilePicture.takeIf { it?.isNotBlank() == true }
+            ?: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+
+        Glide.with(this@ProfileSettingActivity)
+            .load(imageUrl)
+            .circleCrop()
+            .into(binding.profileImage)
+    }
+
 
     private fun startGallery() {
         launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-    }
-
-    private fun startCamera() {
-        currentImageUri = getImageUri(this)
-        launcherIntentCamera.launch(currentImageUri)
-    }
-
-    private val launcherIntentCamera = registerForActivityResult(
-        ActivityResultContracts.TakePicture()
-    ) { isSuccess ->
-        if (isSuccess) {
-            showImage()
-        }
     }
 
     private val launcherGallery = registerForActivityResult(
@@ -137,16 +153,18 @@ class ProfileSettingActivity : AppCompatActivity() {
     ) { uri: Uri? ->
         if (uri != null) {
             currentImageUri = uri
-            showImage() //untuk menampilkan
+            showImage()
         } else {
-            Log.d("Photo Picker", "No media selected")
+            showToast("No media selected")
         }
     }
 
     private fun showImage() {
-        currentImageUri?.let {
-            Log.d("Image URI", "showImage: $it")
-            binding.profileImage.setImageURI(it)
+        currentImageUri?.let { uri ->
+            Glide.with(this@ProfileSettingActivity)
+                .load(uri)
+                .circleCrop()
+                .into(binding.profileImage)
         }
     }
 
@@ -154,8 +172,7 @@ class ProfileSettingActivity : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
-    companion object {
-        private const val REQUIRED_PERMISSION = Manifest.permission.CAMERA
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
-
 }

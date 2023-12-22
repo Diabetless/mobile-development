@@ -1,6 +1,5 @@
-package com.ch2Ps073.diabetless.data.remote
+package com.ch2Ps073.diabetless.data.remote.retrofit
 
-import com.ch2Ps073.diabetless.data.remote.retrofit.ApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

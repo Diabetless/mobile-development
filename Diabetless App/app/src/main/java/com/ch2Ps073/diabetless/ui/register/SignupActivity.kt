@@ -10,23 +10,16 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.ch2Ps073.diabetless.R
-import com.ch2Ps073.diabetless.data.remote.ApiConfig
-import com.ch2Ps073.diabetless.data.remote.response.RegisterResponse
 import com.ch2Ps073.diabetless.databinding.ActivitySignupBinding
 import com.ch2Ps073.diabetless.ui.customView.CustomSignupButton
 import com.ch2Ps073.diabetless.ui.customView.PasswordEditText
 import com.ch2Ps073.diabetless.ui.login.LoginActivity
-import com.ch2Ps073.diabetless.ui.login.LoginViewModel
-import com.ch2Ps073.diabetless.ui.login.LoginViewModelFactory
-import com.google.gson.Gson
-import kotlinx.coroutines.launch
-import retrofit2.HttpException
 
-class SignupActivity : AppCompatActivity() {
+class
+SignupActivity : AppCompatActivity() {
     private val viewModel by viewModels<SignupViewModel> {
         SignupViewModelFactory.getInstance(this,lifecycleScope)
     }
