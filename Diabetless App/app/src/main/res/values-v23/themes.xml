@@ -16,8 +16,6 @@
     <item name="cornerSize">50%</item>
   </style>
 
-<<<<<<< HEAD
-=======
   <style name="SheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
     <!--<item name="android:windowCloseOnTouchOutside">false</item>-->
     <item name="android:windowIsTranslucent">true</item>
@@ -29,5 +27,4 @@
     <item name="android:windowIsFloating">true</item>
   </style>
 
->>>>>>> chello
 </resources>

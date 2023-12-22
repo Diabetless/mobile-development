@@ -1,21 +1,11 @@
-<<<<<<< HEAD
 package com.ch2Ps073.diabetless.ui.adapter
-=======
-package com.CH2PS073.diabetless.ui.adapter
->>>>>>> chello
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-<<<<<<< HEAD
 import com.ch2Ps073.diabetless.data.remote.response.MealItem
-=======
-import com.ch2Ps073.diabetless.data.remote.response.Meal
-import com.ch2Ps073.diabetless.data.remote.response.MealItem
-import com.ch2Ps073.diabetless.databinding.ItemArticlesRowBinding
->>>>>>> chello
 import com.ch2Ps073.diabetless.databinding.ItemMealsRowBinding
 
 class MealsAdapter : RecyclerView.Adapter<MealsAdapter.ViewHolder>() {

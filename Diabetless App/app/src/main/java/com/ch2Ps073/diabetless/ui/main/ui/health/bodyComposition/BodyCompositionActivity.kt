@@ -41,5 +41,9 @@ class BodyCompositionActivity : AppCompatActivity() {
                 viewModel.setBody(it.token, numbercm.value, numberkg.value)
             }
         }
+
+        binding.topAppBar.setNavigationOnClickListener {
+            finish()
+        }
     }
 }

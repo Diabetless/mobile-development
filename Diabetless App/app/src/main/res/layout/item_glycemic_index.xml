@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_detected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rice"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.card.MaterialCardView
+                app:cardBackgroundColor="@android:color/white"
+                app:cardElevation="5dp"
+                app:strokeColor="@android:color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="20dp">
+
+                <ImageView
+                    android:id="@+id/img_capture"
+                    tools:ignore="HardcodedText"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:contentDescription="Captured Image"
+                    android:scaleType="centerCrop" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="15dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/dummy_gi"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Glycemix Index"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <com.ch2Ps073.diabetless.ui.customView.PieView
+                        android:id="@+id/pie_gi"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/dummy_gi"
+                        android:layout_width="150dp"
+                        android:layout_height="150sp"
+                        android:layout_margin="25dp"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/ly_gi_level"
+                        app:layout_constraintBottom_toBottomOf="@id/pie_gi"
+                        app:layout_constraintEnd_toEndOf="@id/pie_gi"
+                        app:layout_constraintStart_toStartOf="@id/pie_gi"
+                        app:layout_constraintTop_toTopOf="@id/pie_gi"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/circle"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:id="@+id/tv_gi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="90.0"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_gi_flag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="(High)"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/dummy_gl"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Glycemix Load"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <com.ch2Ps073.diabetless.ui.customView.PieView
+                        android:id="@+id/pie_gl"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/dummy_gl"
+                        android:layout_width="150dp"
+                        android:layout_height="150sp"
+                        android:layout_margin="25dp"
+                        android:padding="25dp"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/ly_gl_level"
+                        app:layout_constraintBottom_toBottomOf="@id/pie_gl"
+                        app:layout_constraintEnd_toEndOf="@id/pie_gl"
+                        app:layout_constraintStart_toStartOf="@id/pie_gl"
+                        app:layout_constraintTop_toTopOf="@id/pie_gl"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/circle"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:id="@+id/tv_gl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.7"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_gl_flag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="(High)"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_fact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="Nutrition Facts (500 g)"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:id="@+id/dummy_cal"
+                    app:layout_constraintEnd_toStartOf="@id/tv_cal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    style="@style/TableRow"
+                    android:padding="6dp"
+                    android:text="Calories (kcal)"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_cal"
+                    app:layout_constraintBottom_toBottomOf="@id/dummy_cal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/dummy_cal"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background_stroke_black"
+                    android:gravity="center"
+                    android:padding="6dp"
+                    android:text="135.0"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/dummy_carb"
+                    app:layout_constraintEnd_toStartOf="@id/tv_cal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dummy_cal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background_stroke_black"
+                    android:padding="6dp"
+                    android:text="Carbohydrates (g)"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_carb"
+                    app:layout_constraintBottom_toBottomOf="@id/dummy_carb"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/dummy_carb"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background_stroke_black"
+                    android:gravity="center"
+                    android:padding="6dp"
+                    android:text="135.0"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/dummy_proteins"
+                    app:layout_constraintEnd_toStartOf="@id/tv_cal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dummy_carb"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background_stroke_black"
+                    android:padding="6dp"
+                    android:text="Proteins (g)"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_proteins"
+                    app:layout_constraintBottom_toBottomOf="@id/dummy_proteins"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/dummy_proteins"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background_stroke_black"
+                    android:gravity="center"
+                    android:padding="6dp"
+                    android:text="18.5"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/dummy_fats"
+                    app:layout_constraintEnd_toStartOf="@id/tv_cal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dummy_proteins"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background_stroke_black"
+                    android:padding="6dp"
+                    android:text="Fats (g)"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_fats"
+                    app:layout_constraintBottom_toBottomOf="@id/dummy_fats"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/dummy_fats"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background_stroke_black"
+                    android:gravity="center"
+                    android:padding="6dp"
+                    android:text="3.5"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/ly_meal_recommendation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Healthier Recommendation"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_recommendation"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/item_meal_detected"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+
+                <TextView
+                    android:id="@+id/tv_no_item_recommendation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="20dp"
+                    android:gravity="center"
+                    android:text="No Item Recommendation Found"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

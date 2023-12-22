@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.ch2Ps073.diabetless.data.remote.ApiConfig
+import com.ch2Ps073.diabetless.data.remote.retrofit.ApiConfig
 import com.ch2Ps073.diabetless.data.remote.response.HealthUserResponse
 import retrofit2.Call
 import retrofit2.Callback

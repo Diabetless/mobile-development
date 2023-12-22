@@ -32,7 +32,8 @@
                     android:layout_height="wrap_content"
                     android:iconifiedByDefault="false"
                     android:queryBackground="@android:color/transparent"
-                    android:queryHint="Search Article" />
+                    android:queryHint="Search Article"
+                    style="@style/SearchView"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -57,21 +58,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_sv" />
 
-<<<<<<< HEAD
-=======
-    <!--    <Button-->
-    <!--        android:id="@+id/logoutButton"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="16dp"-->
-    <!--        android:layout_marginTop="32dp"-->
-    <!--        android:layout_marginEnd="16dp"-->
-    <!--        android:text="@string/logout"-->
-    <!--        android:textColor="@color/black"-->
-    <!--        app:backgroundTint="@color/pink_light"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/textView" />-->
-
->>>>>>> chello
 </androidx.constraintlayout.widget.ConstraintLayout>

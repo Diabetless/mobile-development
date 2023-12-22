@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_light"
+    style="@style/ScreenBackgroundFragment"
     tools:context=".ui.main.ui.health.bloodSugar.history.HistoryBloodActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -40,7 +40,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            style="@style/CardBackgroundFragment">
 
             <TextView
                 android:id="@+id/avgChartText"

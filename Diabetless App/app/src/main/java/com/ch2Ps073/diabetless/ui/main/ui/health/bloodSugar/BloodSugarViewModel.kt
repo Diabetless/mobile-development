@@ -6,7 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.ViewModel
-import com.ch2Ps073.diabetless.data.remote.ApiConfig
+import com.ch2Ps073.diabetless.data.remote.retrofit.ApiConfig
 import com.ch2Ps073.diabetless.data.remote.response.FileUploadResponse
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
